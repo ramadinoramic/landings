@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hepsibahis | Premium Onboarding</title>
+    <style>
+        :root {
+            --bg-color: #06080f;
+            --card-bg: #111827;
+            --primary: #fbbf24; 
+            --primary-glow: rgba(251, 191, 36, 0.3);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent: #ef4444;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.1) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: rgba(0,0,0,0.2);
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; color: #fff; }
+        .logo span { color: var(--primary); }
+
+        main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 1rem; }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .prog-wrap { margin-bottom: 2rem; }
+        .prog-text { 
+            display: flex; justify-content: space-between; 
+            font-size: 0.75rem; color: var(--text-muted); 
+            margin-bottom: 8px; text-transform: uppercase;
+        }
+        .prog-bar { height: 4px; background: var(--glass); border-radius: 10px; overflow: hidden; }
+        .prog-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.4s ease; }
+
+        /* Views */
+        .view { display: none; }
+        .view.active { display: block; animation: fadeIn 0.4s ease forwards; }
+
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center; }
+        .subtitle { color: var(--text-muted); text-align: center; margin-bottom: 2rem; font-size: 0.95rem; }
+
+        .options-stack { display: flex; flex-direction: column; gap: 12px; }
+        
+        .opt-btn {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 1.1rem;
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .opt-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .opt-btn.rookie-btn {
+            border: 1px dashed var(--primary);
+            background: rgba(251, 191, 36, 0.05);
+        }
+
+        /* Loader Styles */
+        .loader-container { text-align: center; padding: 2rem 0; }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--glass);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        #loading-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            min-height: 1.5em;
+        }
+
+        /* Offer Styles */
+        .offer-card { text-align: center; }
+        .vip-badge { 
+            background: linear-gradient(90deg, #fbbf24, #f59e0b); 
+            color: #000; font-size: 0.75rem; font-weight: 800;
+            padding: 4px 12px; border-radius: 20px; display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .bonus-val { 
+            font-size: 2.8rem; font-weight: 900; color: var(--primary);
+            margin: 1rem 0; text-shadow: 0 0 20px var(--primary-glow);
+        }
+        .features { list-style: none; margin: 1.5rem 0; text-align: left; }
+        .features li { padding: 10px 0; color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid var(--glass); }
+        .features li b { color: #fff; }
+
+        .cta-main {
+            background: var(--primary);
+            color: #000; border: none; width: 100%; padding: 1.2rem;
+            border-radius: 16px; font-size: 1.2rem; font-weight: 800;
+            cursor: pointer; box-shadow: 0 10px 20px rgba(251, 191, 36, 0.2);
+            transition: 0.3s;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 400px) {
+            .container { padding: 1.5rem; border: none; background: transparent; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">HEPSI<span>BAHIS</span></div>
+</header>
+
+<main>
+    <div class="container">
+        <div id="quiz-flow">
+            <div class="prog-wrap">
+                <div class="prog-text"><span id="q-label">Question 1</span><span id="q-count">1 / 4</span></div>
+                <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+            </div>
+
+            <div class="view active" id="step1">
+                <h2>Hoş Geldiniz!</h2>
+                <p class="subtitle">Select your entry path to Hepsibahis:</p>
+                <div class="options-stack">
+                    <button class="opt-btn" onclick="next(1, 'interest', 'sports')">Sports Betting ⚽</button>
+                    <button class="opt-btn" onclick="next(1, 'interest', 'casino')">Casino Games 🎰</button>
+                    <button class="opt-btn rookie-btn" onclick="next(1, 'interest', 'rookie')">I'm new, guide me! ✨</button>
+                </div>
+            </div>
+
+            <div class="view" id="step2">
+                <h2 id="s2-title">Your Goal</h2>
+                <p class="subtitle">What kind of thrill are you looking for?</p>
+                <div class="options-stack" id="s2-options">
+                    </div>
+            </div>
+
+            <div class="view" id="step3">
+                <h2 id="s3-title">Almost there...</h2>
+                <p class="subtitle">Pick what sounds most exciting:</p>
+                <div class="options-stack" id="s3-options-cont">
+                    </div>
+            </div>
+
+            <div class="view" id="step4">
+                <h2>Final Priority</h2>
+                <p class="subtitle">What should we prioritize for you?</p>
+                <div class="options-stack">
+                    <button class="opt-btn" onclick="startLoading()">Ultra-Fast Payouts ⚡</button>
+                    <button class="opt-btn" onclick="startLoading()">Easy-to-use Interface 📱</button>
+                    <button class="opt-btn" onclick="startLoading()">Helpful 24/7 Support 📞</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="view" id="view-loading">
+            <div class="loader-container">
+                <div class="spinner"></div>
+                <div id="loading-text">Tailoring your experience...</div>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                    Preparing a custom welcome package for your journey.
+                </p>
+            </div>
+        </div>
+
+        <div class="view offer-card" id="view-offer">
+            <div class="vip-badge" id="offer-badge">PERSONALIZED OFFER READY</div>
+            <h2 id="offer-msg">Congratulations!</h2>
+            <div class="bonus-val" id="bonus-amt">10,000₺</div>
+            <ul class="features" id="offer-features">
+                <li><b>Withdrawal:</b> Instant to Papara / Payfix</li>
+                <li><b>Access:</b> VIP Lobby Unlocked</li>
+                <li><b>Support:</b> 24/7 Priority Support</li>
+            </ul>
+            <button class="cta-main" onclick="finish()">CLAIM BONUS NOW</button>
+            <div style="margin-top:1.5rem">
+                <a href="#" onclick="location.reload()" style="color:var(--text-muted); font-size:0.8rem;">Start over</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const state = { step: 1, interest: '', goal: '', pref: '' };
+
+    function track(event, data) { console.log(`[HB-Analytics] ${event}`, data); }
+
+    function next(s, key, val) {
+        state[key] = val;
+        track('step_completed', { step: s, key, val });
+
+        if (s === 1) setupStep2(val);
+        if (s === 2) setupStep3(state.interest);
+        
+        document.getElementById(`step${s}`).classList.remove('active');
+        state.step++;
+        document.getElementById(`step${state.step}`).classList.add('active');
+        
+        const percent = (state.step / 4) * 100;
+        document.getElementById('prog-fill').style.width = percent + '%';
+        document.getElementById('q-count').innerText = state.step + ' / 4';
+        document.getElementById('q-label').innerText = 'Question ' + state.step;
+    }
+
+    function setupStep2(interest) {
+        const cont = document.getElementById('s2-options');
+        const title = document.getElementById('s2-title');
+        cont.innerHTML = '';
+
+        if (interest === 'rookie') {
+            title.innerText = "Welcome, Newcomer!";
+            const opts = [
+                {k:'fun', n:'Just for fun/entertainment 🍿'},
+                {k:'big', n:'Looking for a big win 🏆'},
+                {k:'learn', n:'I want to learn the games 📚'}
+            ];
+            opts.forEach(o => cont.innerHTML += `<button class="opt-btn" onclick="next(2, 'goal', '${o.k}')">${o.n}</button>`);
+        } else if (interest === 'sports') {
+            title.innerText = "Your Strategy";
+            const opts = [{k:'live', n:'In-play/Live betting ⚡'}, {k:'pre', n:'Match predictions 🔮'}];
+            opts.forEach(o => cont.innerHTML += `<button class="opt-btn" onclick="next(2, 'goal', '${o.k}')">${o.n}</button>`);
+        } else {
+            title.innerText = "Lobby Style";
+            const opts = [{k:'slots', n:'Vibrant Video Slots 🍬'}, {k:'live', n:'Real Dealer Tables 🤵'}];
+            opts.forEach(o => cont.innerHTML += `<button class="opt-btn" onclick="next(2, 'goal', '${o.k}')">${o.n}</button>`);
+        }
+    }
+
+    function setupStep3(interest) {
+        const cont = document.getElementById('s3-options-cont');
+        cont.innerHTML = '';
+        
+        let items = [];
+        if (interest === 'rookie') {
+            items = ['Slots (Easiest to play) 🍒', 'Football (Fans choice) ⚽', 'Live Games (Most social) 💬'];
+        } else if (interest === 'sports') {
+            items = ['Süper Lig 🇹🇷', 'Champions League 🇪🇺', 'NBA Basketball 🏀'];
+        } else {
+            items = ['Pragmatic Play Slots 🍭', 'Evolution Live Casino 🎲', 'Fast Crash Games 🚀'];
+        }
+
+        items.forEach(o => {
+            cont.innerHTML += `<button class="opt-btn" onclick="next(3, 'pref', '${o}')">${o}</button>`;
+        });
+    }
+
+    function startLoading() {
+        track('quiz_finished', state);
+        document.getElementById('quiz-flow').style.display = 'none';
+        document.getElementById('view-loading').classList.add('active');
+        
+        const texts = [
+            "Analyzing your beginner profile...",
+            "Searching for rookie-friendly tables...",
+            "Allocating your ₺ Welcome Bonus...",
+            "Setting up your 7/24 support guide..."
+        ];
+        
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i < texts.length) {
+                document.getElementById('loading-text').innerText = texts[i];
+                i++;
+            } else {
+                clearInterval(interval);
+                showOffer();
+            }
+        }, 900);
+    }
+
+    function showOffer() {
+        document.getElementById('view-loading').classList.remove('active');
+        document.getElementById('view-offer').classList.add('active');
+
+        const bAmt = document.getElementById('bonus-amt');
+        const bBadge = document.getElementById('offer-badge');
+        const bFeat = document.getElementById('offer-features');
+
+        if (state.interest === 'rookie') {
+            bBadge.innerText = "STARTER PACK UNLOCKED";
+            bAmt.innerText = "12,500₺"; // Special middle-ground bonus
+            bFeat.innerHTML = `
+                <li><b>Step 1:</b> Instant 100% Match</li>
+                <li><b>Step 2:</b> 50 Free Spins Added</li>
+                <li><b>Guide:</b> 24/7 Help Line Included</li>
+            `;
+        } else if (state.interest === 'casino') {
+            bAmt.innerText = "15,000₺";
+        } else {
+            bAmt.innerText = "10,000₺";
+        }
+    }
+
+    function finish() {
+        track('cta_final_click', state);
+        alert("Redirecting to your secured registration page. Good luck!");
+    }
+</script>
+
+</body>
+</html>
