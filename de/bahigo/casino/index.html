@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahigo Premium Casino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            --brand-green: #74bf2d;
+            --brand-red: #ff4b4b;
+            --bg-deep: #0b0c10;
+            --text-white: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            background: #0b0c10;
+            height: 100vh; 
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 2. HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            background: rgba(11, 12, 16, 0.85); 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { height: 32px; width: auto; display: block; }
+        .logo-text { font-size: 1.5rem; font-weight: 900; color: white; display: flex; align-items: center; letter-spacing: -1px; }
+        .logo-text span { color: var(--brand-red); margin-right: 6px; }
+
+        .desktop-nav { display: none; gap: 1rem; }
+        .btn { padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 600; text-decoration: none; border-radius: 6px; display: inline-flex; align-items: center; }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
+        .btn-primary { background: var(--brand-green); color: white; border: none; }
+        .hamburger { font-size: 1.5rem; cursor: pointer; color: white; }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: center;
+            text-align: center;
+            position: relative;
+            
+            /* Padding to push content down */
+            padding-top: 130px; 
+            
+            background-image: url('bak.png'); 
+            background-position: center top;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(11,12,16,0.3) 0%, rgba(11,12,16,0.85) 65%, #000 100%);
+            z-index: 1;
+        }
+
+        /* --- HERO IMAGE WRAPPER --- */
+        .hero-image-wrapper {
+            flex-grow: 0;
+            width: 100%;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            
+            margin-top: 0;    
+            margin-bottom: 5px; 
+            
+            pointer-events: none;
+        }
+
+        /* Gradient fade for image blending */
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px; 
+            background: linear-gradient(to bottom, transparent 0%, #0b0c10 95%);
+            z-index: 5;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            max-height: 38vh; 
+            object-fit: contain;
+            padding-bottom: 0; 
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- HERO CONTENT --- */
+        .hero-content { 
+            z-index: 10;
+            width: 100%; 
+            max-width: 600px; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: flex-end;
+            padding-bottom: 20px; 
+        } 
+
+        /* HEADLINE STYLING */
+        .headline {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+            letter-spacing: -0.5px;
+            width: 90%;
+        }
+
+        .highlight-prominent {
+            font-size: 1.6em; 
+            display: block; 
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff5e62, #ff9966);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 10px rgba(255, 94, 98, 0.3));
+            margin: 5px 0;
+        }
+
+        .text-white { color: white; }
+
+        /* COUPON */
+        .coupon-container {
+            margin: 0.2rem auto;
+            display: inline-flex;
+            width: 90%;
+            max-width: 350px;
+        }
+
+        .coupon-card {
+            width: 100%;
+            background: rgba(20, 20, 25, 0.9);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
+            
+            /* CHANGED: Added gap to separate code from button */
+            gap: 15px; 
+        }
+
+        .coupon-col { display: flex; flex-direction: column; align-items: flex-start; }
+        .coupon-info { font-size: 0.65rem; color: #ccc; text-transform: uppercase; font-weight: 600; margin-bottom: 2px;}
+        .code-text { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 800; color: white; letter-spacing: 0.5px; }
+        
+        .copy-btn { 
+            background: rgba(255,255,255,0.1); 
+            color: #74bf2d; 
+            border: none; 
+            padding: 8px 12px; 
+            border-radius: 4px; 
+            font-size: 0.8rem; 
+            font-weight: 900; 
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap; /* Prevents text wrap */
+        }
+
+        .btn-cta-large {
+            padding: 1rem 0;
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 8px;
+            background: var(--brand-green);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 0 #5a9622;
+            margin-top: 0.8rem;
+            width: 90%;
+            max-width: 350px;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .btn-cta-large:active { transform: translateY(2px); box-shadow: 0 2px 0 #5a9622; }
+
+        /* --- NEW GAMES SLIDER --- */
+        .games-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 15;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            background: rgba(0,0,0,0.3); 
+        }
+
+        .slider-track {
+            display: flex;
+            width: max-content; 
+            animation: scroll-left 20s linear infinite; 
+        }
+
+        .slider-track img {
+            height: 80px; 
+            width: auto;
+            margin-right: 15px; 
+            border-radius: 8px;
+            opacity: 0.9;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        /* --- 4. STEPS SECTION --- */
+        .steps-section {
+            width: 100%;
+            padding: 0.8rem 0.5rem;
+            background: #000;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-card:not(:last-child)::after {
+            content: '›';
+            position: absolute;
+            right: -8px;
+            top: 12px;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .step-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--brand-green);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(116, 191, 45, 0.1);
+        }
+
+        .step-icon-box svg { width: 18px; height: 18px; fill: none; stroke: var(--brand-green); stroke-width: 2; }
+        
+        .step-text h3 { font-size: 0.6rem; color: white; margin: 0; font-weight: 600; text-transform: uppercase; }
+        .step-text p { display: none; }
+
+        /* --- DESKTOP FIXES --- */
+        @media (min-width: 768px) {
+            body { overflow: auto; height: auto; min-height: 100vh; }
+            header { padding: 1.2rem 3rem; height: 80px; }
+            .desktop-nav { display: flex; } .hamburger { display: none; }
+            .logo-img { height: 40px; }
+            
+            .hero { 
+                justify-content: center; 
+                padding-top: 100px; 
+                padding-bottom: 3rem; 
+            }
+            .hero-image-wrapper { 
+                flex-grow: 0; 
+                margin-bottom: 2rem; 
+                align-items: center;
+                margin-top: 0; 
+            }
+            
+            .hero-img { max-height: 400px; width: auto; padding-bottom: 0; }
+            
+            .hero-content { flex-grow: 0; justify-content: center; padding-bottom: 0; }
+            
+            .headline { font-size: 3rem; }
+            .coupon-container { width: auto; max-width: none; }
+            .btn-cta-large { width: auto; padding: 1.2rem 4rem; margin-top: 1.5rem; }
+            
+            .steps-section { padding: 2rem; }
+            .steps-grid { gap: 2rem; }
+            .step-card { flex-direction: row; text-align: left; background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; }
+            .step-text p { display: block; font-size: 0.8rem; color: #aaa; }
+            .step-text h3 { font-size: 1rem; }
+            .step-card:not(:last-child)::after { right: -15px; top: 50%; transform: translateY(-50%); }
+            
+            .games-slider { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="logo.webp" alt="BAHIGO" class="logo-img"> 
+            <div class="logo-text" style="display:none;"><span>▶</span> BAHIGO</div>
+        </a>
+        <nav class="desktop-nav">
+            <a href="#" class="btn btn-primary">Registrieren</a>
+            <a href="#" class="btn btn-outline">Login</a>
+        </nav>
+        <div class="hamburger">☰</div>
+    </header>
+
+    <section class="hero">
+        
+        <div class="hero-image-wrapper">
+            <img src="zes.png" alt="Casino" class="hero-img">
+        </div>
+
+        <div class="hero-content">
+            <h1 class="headline">
+                <span class="text-white">100% Bonus bis zu</span>
+                <span class="highlight-prominent">2000 CHF</span>
+                <span class="text-white">+ 200 Free Spins!</span>
+            </h1>
+
+            <div class="coupon-container">
+                <div class="coupon-card">
+                    <div class="coupon-col">
+                        <span class="coupon-info">BONUS CODE</span>
+                        <span class="code-text">BAHIGO200FS</span>
+                    </div>
+                    <button class="copy-btn">COPY</button>
+                </div>
+            </div>
+            
+            <button class="btn-cta-large">
+                JETZT SICHERN
+            </button>
+        </div>
+
+        <div class="games-slider">
+            <div class="slider-track">
+                <img src="aviator.png" alt="Games">
+                <img src="bonanz.png" alt="Games">
+                <img src="joker.png" alt="Games">
+                <img src="mustang.png" alt="Games">
+                <img src="olimp.png" alt="Games">
+                <img src="sweetb.png" alt="Games">
+            </div>
+        </div>
+
+    </section>
+
+    <div class="steps-section">
+        <div class="steps-grid">
+            
+            <div class="step-card">
+                <div class="step-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div class="step-text">
+                    <h3>Registrieren</h3>
+                    <p>Schnelle Anmeldung.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon-box">
+                   <svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line></svg>
+                </div>
+                <div class="step-text">
+                    <h3>Bonus sichern</h3>
+                    <p>Code eingeben.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon-box">
+                   <svg viewBox="0 0 24 24"><path d="M8 21h8m-4-9v9m-8-9a6 6 0 1 1 12 0v0a6 6 0 0 1-12 0v0Z" /><path d="M16 6h4a2 2 0 0 1 0 4h-4" /><path d="M8 6H4a2 2 0 0 0 0 4h4" /></svg>
+                </div>
+                <div class="step-text">
+                    <h3>Gewinnen</h3>
+                    <p>Spielen & gewinnen.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.copy-btn').addEventListener('click', function() {
+            const code = document.querySelector('.code-text').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = this.innerText;
+                this.innerText = 'COPIED!';
+                setTimeout(() => {
+                    this.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    </script>
+
+</body>
+</html>
