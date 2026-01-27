@@ -67,8 +67,7 @@
             text-align: center;
             position: relative;
             
-            /* Padding to push content down */
-            padding-top: 130px; 
+            padding-top: 70px; 
             
             background-image: url('bak.png'); 
             background-position: center top;
@@ -95,19 +94,18 @@
             z-index: 2;
             
             margin-top: 0;    
-            margin-bottom: 5px; 
+            margin-bottom: 0px; 
             
             pointer-events: none;
         }
 
-        /* Gradient fade for image blending */
         .hero-image-wrapper::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 150px; 
+            height: 100px; 
             background: linear-gradient(to bottom, transparent 0%, #0b0c10 95%);
             z-index: 5;
         }
@@ -115,7 +113,7 @@
         .hero-img {
             width: 100%;
             height: auto;
-            max-height: 38vh; 
+            max-height: 60vh; 
             object-fit: contain;
             padding-bottom: 0; 
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
@@ -140,15 +138,14 @@
             flex-direction: column;
             align-items: center;
             flex-grow: 1;
-            justify-content: flex-end;
-            padding-bottom: 20px; 
+            justify-content: center; 
+            padding-bottom: 5px; 
         } 
 
-        /* HEADLINE STYLING */
         .headline {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-size: clamp(1.4rem, 4.5vw, 2.2rem); 
             font-weight: 900;
-            line-height: 0.9;
+            line-height: 0.95;
             margin-bottom: 0.5rem;
             margin-top: 0;
             letter-spacing: -0.5px;
@@ -156,19 +153,18 @@
         }
 
         .highlight-prominent {
-            font-size: 1.6em; 
+            font-size: 1.5em; 
             display: block; 
             font-weight: 900;
             background: linear-gradient(45deg, #ff5e62, #ff9966);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 2px 10px rgba(255, 94, 98, 0.3));
-            margin: 5px 0;
+            margin: 3px 0;
         }
 
         .text-white { color: white; }
 
-        /* COUPON */
         .coupon-container {
             margin: 0.2rem auto;
             display: inline-flex;
@@ -181,7 +177,7 @@
             background: rgba(20, 20, 25, 0.9);
             border: 1px dashed rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            padding: 0.6rem 1rem;
+            padding: 0.5rem 1rem;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -190,8 +186,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             position: relative;
             z-index: 10;
-            
-            /* CHANGED: Added gap to separate code from button */
             gap: 15px; 
         }
 
@@ -203,18 +197,25 @@
             background: rgba(255,255,255,0.1); 
             color: #74bf2d; 
             border: none; 
-            padding: 8px 12px; 
+            padding: 6px 10px; 
             border-radius: 4px; 
-            font-size: 0.8rem; 
+            font-size: 0.75rem; 
             font-weight: 900; 
             text-transform: uppercase;
             cursor: pointer;
-            white-space: nowrap; /* Prevents text wrap */
+            white-space: nowrap;
         }
 
+        /* CTA BUTTON (UPDATED TO ANCHOR) */
         .btn-cta-large {
-            padding: 1rem 0;
-            font-size: 1.3rem;
+            /* Flex properties for centering text in an anchor tag */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none; /* Remove underline */
+            
+            padding: 0.8rem 0;
+            font-size: 1.2rem;
             font-weight: 900;
             text-transform: uppercase;
             border-radius: 8px;
@@ -222,7 +223,7 @@
             color: white;
             border: none;
             box-shadow: 0 4px 0 #5a9622;
-            margin-top: 0.8rem;
+            margin-top: 0.6rem;
             width: 90%;
             max-width: 350px;
             cursor: pointer;
@@ -238,8 +239,8 @@
             overflow: hidden;
             position: relative;
             z-index: 15;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 8px;
+            padding-bottom: 5px;
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             background: rgba(0,0,0,0.3); 
@@ -252,7 +253,7 @@
         }
 
         .slider-track img {
-            height: 80px; 
+            height: 60px; 
             width: auto;
             margin-right: 15px; 
             border-radius: 8px;
@@ -267,10 +268,10 @@
         /* --- 4. STEPS SECTION --- */
         .steps-section {
             width: 100%;
-            padding: 0.8rem 0.5rem;
+            padding: 0.6rem 0.5rem; 
             background: #000;
             border-top: 1px solid rgba(255,255,255,0.1);
-            flex-shrink: 0;
+            flex-shrink: 0; 
             z-index: 20;
         }
 
@@ -294,31 +295,30 @@
             content: '›';
             position: absolute;
             right: -8px;
-            top: 12px;
+            top: 10px;
             font-size: 1.2rem;
             color: rgba(255,255,255,0.3);
         }
 
         .step-icon-box {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             border: 1px solid var(--brand-green);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(116, 191, 45, 0.1);
         }
 
-        .step-icon-box svg { width: 18px; height: 18px; fill: none; stroke: var(--brand-green); stroke-width: 2; }
+        .step-icon-box svg { width: 16px; height: 16px; fill: none; stroke: var(--brand-green); stroke-width: 2; }
         
         .step-text h3 { font-size: 0.6rem; color: white; margin: 0; font-weight: 600; text-transform: uppercase; }
         .step-text p { display: none; }
 
         /* --- DESKTOP FIXES --- */
         @media (min-width: 768px) {
-            body { overflow: auto; height: auto; min-height: 100vh; }
             header { padding: 1.2rem 3rem; height: 80px; }
             .desktop-nav { display: flex; } .hamburger { display: none; }
             .logo-img { height: 40px; }
@@ -326,7 +326,7 @@
             .hero { 
                 justify-content: center; 
                 padding-top: 100px; 
-                padding-bottom: 3rem; 
+                padding-bottom: 2rem; 
             }
             .hero-image-wrapper { 
                 flex-grow: 0; 
@@ -335,11 +335,13 @@
                 margin-top: 0; 
             }
             
+            .hero-image-wrapper::after { display: block; height: 120px; }
+
             .hero-img { max-height: 400px; width: auto; padding-bottom: 0; }
             
             .hero-content { flex-grow: 0; justify-content: center; padding-bottom: 0; }
             
-            .headline { font-size: 3rem; }
+            .headline { font-size: 3rem; margin-bottom: 1rem; }
             .coupon-container { width: auto; max-width: none; }
             .btn-cta-large { width: auto; padding: 1.2rem 4rem; margin-top: 1.5rem; }
             
@@ -351,19 +353,22 @@
             .step-card:not(:last-child)::after { right: -15px; top: 50%; transform: translateY(-50%); }
             
             .games-slider { display: none; }
+            
+            .step-icon-box { width: 50px; height: 50px; }
+            .step-icon-box svg { width: 24px; height: 24px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">
+        <a href="https://go.2youwin.com/click" class="logo">
             <img src="logo.webp" alt="BAHIGO" class="logo-img"> 
             <div class="logo-text" style="display:none;"><span>▶</span> BAHIGO</div>
         </a>
         <nav class="desktop-nav">
-            <a href="#" class="btn btn-primary">Registrieren</a>
-            <a href="#" class="btn btn-outline">Login</a>
+            <a href="https://go.2youwin.com/click" class="btn btn-primary">Registrieren</a>
+            <a href="https://go.2youwin.com/click" class="btn btn-outline">Login</a>
         </nav>
         <div class="hamburger">☰</div>
     </header>
@@ -391,9 +396,9 @@
                 </div>
             </div>
             
-            <button class="btn-cta-large">
+            <a href="https://go.2youwin.com/click" class="btn-cta-large">
                 JETZT SICHERN
-            </button>
+            </a>
         </div>
 
         <div class="games-slider">
@@ -459,6 +464,6 @@
             });
         });
     </script>
-
+<script src="https://go.2youwin.com/unilpclick.js?attribution=lastpaid&cookiedomain=https%3A%2F%2Fpanthersground.com%2Fde%2Fbahigo%2Fcasino%2Findex.html&cookieduration=90&defaultcampaignid=&regviewonce=false"></script>
 </body>
 </html>
