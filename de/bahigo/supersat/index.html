@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bahigo | Premium Sports</title>
+    <style>
+        :root {
+            --primary: #89C706;
+            --primary-gradient: linear-gradient(135deg, #9be309 0%, #7db604 100%);
+            --accent: #FF3B30;
+            --bg-body: #000000;
+            --text-main: #FFFFFF;
+            --text-sec: #8E8E93;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            width: 100%;
+            height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 15px; z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo img { height: 28px; width: auto; }
+
+        .btn-register-header {
+            background: var(--primary-gradient);
+            color: #000; font-weight: 700; font-size: 11px;
+            padding: 6px 12px; border-radius: 4px;
+            text-decoration: none; text-transform: uppercase;
+        }
+
+        /* --- THE FOLD FIX --- */
+        .above-the-fold-wrapper {
+            height: 100dvh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://bahigolp.com/sp-chde/img-background/sp-old-nfr-bg.webp');
+            background-size: cover;
+            background-position: center top;
+        }
+
+        .above-the-fold-wrapper::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 60%, #000 100%);
+            z-index: 0;
+        }
+
+        /* Image Container: Now scales properly without disappearing */
+        .visual-container {
+            flex: 1 1 30%; /* Take 30% of space but can grow */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1;
+            min-height: 120px; /* Ensures it never hits 0 */
+        }
+
+        .visual-container .main-collage {
+            max-height: 100%;
+            width: auto;
+            max-width: 95%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+        }
+
+        .content-container {
+            flex: 0 0 auto;
+            width: 100%;
+            text-align: center;
+            padding: 5px 20px;
+            z-index: 2;
+        }
+
+        .label-pill {
+            display: inline-block;
+            font-size: 10px; font-weight: 700;
+            color: #fff; background: var(--accent);
+            padding: 2px 10px; border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .deposit-text {
+            font-size: 13px;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        /* THE 50 CHF EMPHASIS */
+        .highlight-50 {
+            display: block;
+            font-size: clamp(55px, 12vw, 85px);
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 0.9;
+            margin: 5px 0;
+            text-shadow: 0 0 25px rgba(137, 199, 6, 0.7);
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.2); }
+        }
+
+        .timer-row {
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+        #countdown { color: var(--accent); }
+
+        .btn-primary {
+            width: 100%; max-width: 320px;
+            background: var(--primary-gradient);
+            border: none; padding: 16px; border-radius: 10px;
+            color: #000; font-size: 17px; font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(137, 199, 6, 0.5);
+            text-transform: uppercase;
+        }
+
+        /* --- STEPS STRIP: Forced Above Fold --- */
+        .steps-strip {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 360px;
+            margin: 15px auto 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            z-index: 2;
+            padding-bottom: 5px;
+        }
+
+        .step { display: flex; flex-direction: column; align-items: center; }
+        
+        .step-dot {
+            width: 22px; height: 22px;
+            background: #111; border: 1.5px solid var(--primary);
+            border-radius: 50%; color: var(--primary);
+            font-size: 11px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 3px;
+        }
+
+        .step-txt { font-size: 9px; color: #aaa; text-transform: uppercase; font-weight: 700; }
+
+        /* Rest of sections */
+        .welcome-section { padding: 50px 20px; text-align: center; background: #000;}
+        .welcome-text-block p { color: #ccc; font-size: 14px; margin-bottom: 15px; text-align: center; }
+
+        @media (max-height: 600px) {
+            .visual-container { flex: 0 1 20%; min-height: 80px; }
+            .highlight-50 { font-size: 45px; }
+            .btn-primary { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="https://go.2youwin.com/click" class="logo">
+            <img src="logo.webp" alt="Bahigo Logo">
+        </a>
+        <a href="https://go.2youwin.com/click" class="btn-register-header">Registrieren</a>
+    </header>
+
+    <div class="above-the-fold-wrapper">
+        <div class="visual-container">
+            <img src="basel1.png" alt="Sports" class="main-collage">
+        </div>
+
+        <div class="content-container">
+            <div class="label-pill">NUR HEUTE GÜLTIG</div>
+            <span class="deposit-text">10 CHF EINZAHLEN & ERHALTEN</span>
+            <span class="highlight-50">50 CHF</span>
+            
+            <div class="timer-row">
+                Endet in: <span id="countdown">00:00:00</span>
+            </div>
+
+            <div>
+                <button class="btn-primary" onclick="window.location.href='https://go.2youwin.com/click'">JETZT SICHERN</button>
+            </div>
+        </div>
+
+        <div class="steps-strip">
+            <div class="step"><div class="step-dot">1</div><div class="step-txt">Konto</div></div>
+            <div class="step"><div class="step-dot">2</div><div class="step-txt">Einzahlen</div></div>
+            <div class="step"><div class="step-dot">3</div><div class="step-txt">Wetten</div></div>
+        </div>
+    </div> 
+
+    <section class="welcome-section">
+        <h2 style="color:white; margin-bottom:15px;">Willkommens-Spezial</h2>
+        <div class="welcome-text-block">
+            <p>Zahlen Sie heute 10 CHF ein und wir füllen Ihr Konto auf 50 CHF auf. Starten Sie beim Schweizer Original mit dem besten Bonus des Tages.</p>
+        </div>
+        <button class="btn-primary" style="max-width: 280px;" onclick="window.location.href='https://go.2youwin.com/click'">
+            PROMO AKTIVIEREN
+        </button>
+    </section>
+
+    <script>
+        function updateTimer() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            const diff = endOfDay - now;
+            if (diff <= 0) { document.getElementById('countdown').innerHTML = "00:00:00"; return; }
+            const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
+            document.getElementById('countdown').innerHTML = 
+                (hrs < 10 ? "0" + hrs : hrs) + ":" + 
+                (mins < 10 ? "0" + mins : mins) + ":" + 
+                (secs < 10 ? "0" + secs : secs);
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
