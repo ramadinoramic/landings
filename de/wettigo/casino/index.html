@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Bahigo | Premium Sports</title>
+    <title>Wettigo | Premium Sports</title>
     <style>
         :root {
-            --primary: #89C706;
-            --primary-gradient: linear-gradient(135deg, #9be309 0%, #7db604 100%);
+            /* Applied your specific hex codes */
+            --primary: #b3ee41; 
+            --primary-gradient: linear-gradient(135deg, #b3ee41 0%, #9cd136 100%);
             --accent: #FF3B30;
-            --bg-body: #000000;
+            --bg-body: #012035; 
+            --header-bg: #2b6cbe;
             --text-main: #FFFFFF;
             --text-sec: #8E8E93;
         }
@@ -30,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (Updated to #2b6cbe) --- */
         header {
             position: fixed;
             top: 0;
@@ -42,23 +44,21 @@
             align-items: center;
             padding: 0 24px;
             z-index: 1000;
-            background: rgba(0,0,0,0.9);
+            background: var(--header-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.08);
             transition: background 0.3s;
         }
 
-        /* --- LOGO IMAGE STYLES --- */
         .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
         
-        /* This ensures your real logo fits perfectly */
         .logo img {
-            height: 40px; /* Adjust height to match your specific logo file */
+            height: 40px;
             width: auto;
             display: block;
         }
@@ -69,8 +69,9 @@
             gap: 15px;
         }
 
+        /* --- BUTTONS (Updated to #b3ee41) --- */
         .btn-register-header {
-            background: var(--primary-gradient);
+            background: var(--primary);
             color: #000;
             font-weight: 700;
             font-size: 13px;
@@ -132,7 +133,7 @@
             padding-bottom: 15px;
             position: relative;
             overflow: hidden;
-            background-image: url('bak.png');
+            background-image: url('sp-hm-wt-bg.webp');
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
@@ -143,9 +144,9 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to bottom, 
-                rgba(0,0,0,0.4) 0%, 
-                rgba(0,0,0,0.6) 60%, 
-                rgba(0,0,0,1) 100%);
+                rgba(1, 32, 53, 0.4) 0%, 
+                rgba(1, 32, 53, 0.7) 60%, 
+                rgba(1, 32, 53, 1) 100%);
             z-index: 0;
             pointer-events: none;
         }
@@ -215,13 +216,14 @@
         
         .offer-val { font-size: 20px; font-weight: 700; color: white; }
         .offer-sub { font-size: 13px; font-weight: 400; color: #ddd; }
-        .offer-plus { color: var(--accent); font-size: 12px; font-weight: 600; margin-bottom: 12px; display: block;}
+        .offer-plus { color: var(--primary); font-size: 12px; font-weight: 600; margin-bottom: 12px; display: block;}
 
+        /* --- PRIMARY BUTTON (#b3ee41) --- */
         .btn-primary {
             width: 100%;
             max-width: 320px;
             margin: 0 auto;
-            background: var(--primary-gradient);
+            background: var(--primary);
             border: none;
             padding: 16px;
             border-radius: 12px;
@@ -229,7 +231,7 @@
             font-size: 16px;
             font-weight: 750;
             letter-spacing: -0.5px;
-            box-shadow: 0 0 25px rgba(137, 199, 6, 0.4);
+            box-shadow: 0 0 25px rgba(179, 238, 65, 0.4);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -243,7 +245,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
             pointer-events: none;
         }
 
@@ -283,8 +285,8 @@
 
         .step:first-child .step-dot {
             color: var(--primary); border-color: var(--primary);
-            background: rgba(137, 199, 6, 0.1);
-            box-shadow: 0 0 10px rgba(137, 199, 6, 0.2);
+            background: rgba(179, 238, 65, 0.1);
+            box-shadow: 0 0 10px rgba(179, 238, 65, 0.2);
         }
 
         .step-txt {
@@ -298,7 +300,7 @@
             padding: 50px 24px 60px;
             background: var(--bg-body);
             text-align: center;
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid rgba(255,255,255,0.05);
             position: relative;
             z-index: 2;
         }
@@ -327,7 +329,7 @@
         @media (min-width: 769px) {
             .visual-container { max-height: 75vh; padding-bottom: 0; }
             .content-container { padding-bottom: 20px; }
-            header { background: rgba(0,0,0,0.6); }
+            header { background: var(--header-bg); }
         }
 
         @media (max-width: 768px) {
@@ -341,15 +343,15 @@
 <body>
 
     <header>
-        <a href="https://go.2youwin.com/click" class="logo">
-            <img src="logo.webp" alt="Bahigo Logo">
+        <a href="#" class="logo">
+            <img src="logo.webp" alt="Logo">
         </a>
 
         <div class="desktop-nav">
-            <a href="https://go.2youwin.com/click" class="btn-register-header">
+            <a href="#" class="btn-register-header">
                 Registrieren <span class="play-icon-sm"></span>
             </a>
-            <a href="https://go.2youwin.com/click" class="btn-login">
+            <a href="#" class="btn-login">
                 Haben Sie bereits ein Konto? <span class="play-icon-sm"></span>
             </a>
         </div>
@@ -364,20 +366,20 @@
     <div class="above-the-fold-wrapper">
         
         <div class="visual-container">
-            <img src="zes.png" alt="Sports Collage" class="main-collage">
+            <img src="basel1.png" alt="Sports Collage" class="main-collage">
         </div>
 
         <div class="content-container">
             <div class="label-pill">Schweizer Original</div>
-            <h1>100% Bonus bis zu<br>2000 CHF</h1>
+            <h1>Hier wettet<br>die Schweiz.</h1>
             
             <div class="offer-row">
-                <span class="offer-val">+ 200</span>
-                <span class="offer-sub">Free Spins!</span>
+                <span class="offer-val">200%</span>
+                <span class="offer-sub">bis zu 400 CHF</span>
             </div>
-            <span class="offer-plus">BONUS CODE: BAHIGO200FS</span>
+            <span class="offer-plus">+ 100 CHF FREIWETTEN</span>
 
-            <a href="https://go.2youwin.com/click" class="btn-primary" style="text-decoration: none;">JETZT STARTEN</a>
+            <button class="btn-primary">JETZT STARTEN</button>
         </div>
 
         <div class="steps-strip">
@@ -398,56 +400,28 @@
     </div> 
 
     <section class="welcome-section">
-        <h2>Herzlich Willkommen bei Bahigo!</h2>
+        <h2>Herzlich Willkommen!</h2>
         <div class="welcome-banner-wrapper">
             <img src="sp-de-event.webp" alt="Willkommenspaket Banner">
         </div>
         <div class="welcome-text-block">
-            <p>Starten Sie jetzt Ihre Wett-Karriere bei Bahigo mit unserem 200% Willkommensbonus bis zu 400 CHF + 100 CHF in Freiwetten!...</p>
-            <p>Erhalten Sie für kurze Zeit ausserdem 250 Freispiele für Gates of Bahigo...</p>
-            <p>Profitieren Sie ausserdem von unseren zahlreichen Angeboten!...</p>
-            <p>Bei Bahigo ist für jeden etwas dabei...</p>
+            <p>Starten Sie jetzt Ihre Wett-Karriere mit unserem 200% Willkommensbonus bis zu 400 CHF + 100 CHF in Freiwetten!</p>
         </div>
-        
-        <a href="https://go.2youwin.com/click" class="btn-primary" style="max-width: 320px; margin: 0 auto; text-decoration: none;">
+        <button class="btn-primary" style="max-width: 320px; margin: 0 auto;">
             Jetzt Wetten <span class="play-icon"></span>
-        </a>
+        </button>
     </section>
 
     <footer class="site-footer">
         <div class="payment-grid">
-            <div class="pay-logo">paysafecard</div>
             <div class="pay-logo">VISA</div>
             <div class="pay-logo">mastercard</div>
-            <div class="pay-logo">eco</div>
-            <div class="pay-logo">NETELLER</div>
-            <div class="pay-logo">Skrill</div>
             <div class="pay-logo">bitcoin</div>
-            <div class="pay-logo">ethereum</div>
-            <div class="pay-logo">ripple</div>
-            <div class="pay-logo">Neosurf</div>
-            <div class="pay-logo">tether</div>
             <div class="pay-logo">Pay</div>
-            <div class="pay-logo">Revolut</div>
         </div>
         <div class="footer-divider"></div>
-        <div class="regulatory-row">
-            <div class="age-limit">18+</div>
-            <div class="reg-item">GAMBLING<br>COMMISSION</div>
-            <div class="reg-item">BeGamble<br>Aware.org</div>
-        </div>
-        <div class="app-buttons">
-            <a href="https://go.2youwin.com/click" class="btn-app">
-                <div class="app-icon"></div>
-                <div class="app-text"><span>Laden im</span><b>App Store</b></div>
-            </a>
-            <a href="https://go.2youwin.com/click" class="btn-app">
-                <div class="app-icon">▶</div>
-                <div class="app-text"><span>JETZT BEI</span><b>Google Play</b></div>
-            </a>
-        </div>
-        <p class="copyright">© 2026 Bahigo. Alle Rechte vorbehalten.</p>
+        <p class="copyright">© 2026. Alle Rechte vorbehalten.</p>
     </footer>
-<script src="https://go.2youwin.com/unilpclick.js?attribution=lastpaid&cookiedomain=https%3A%2F%2Fpanthersground.com%2Fde%2Fbahigo%2Findex.html&cookieduration=90&defaultcampaignid=&regviewonce=false"></script>
+<script src="https://go.2youwin.com/unilpclick.js?attribution=lastpaid&cookiedomain=https%3A%2F%2Fpanthersground.com%2Fde%2Fwettigo%2Fsport%2Findex.html&cookieduration=90&defaultcampaignid=&regviewonce=false"></script>
 </body>
 </html>
