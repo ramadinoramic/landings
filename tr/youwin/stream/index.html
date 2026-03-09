@@ -69,9 +69,9 @@
             <span class="text-white/40 text-[10px]">|</span>
             <span class="text-xs font-semibold text-gray-200">14.2K</span>
         </div>
-        <div class="text-xl font-extrabold tracking-widest flex items-center gap-2 drop-shadow-lg text-shadow-hard">
-            <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-gold to-orange-500 block"></span>
-            Youwin
+        
+        <div class="flex items-center drop-shadow-lg">
+            <img src="logo.png" alt="Brand Logo" class="h-8 md:h-10 w-auto object-contain">
         </div>
     </header>
 
@@ -176,7 +176,7 @@
         // Email Validation & Dynamic Button Color
         function validateEmail() {
             const emailVal = emailInput.value.trim();
-            // Basic regex to check if it looks like a valid email (text@text.text)
+            // Basic regex to check if it looks like a valid email
             const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
 
             if (isValid) {
@@ -198,7 +198,7 @@
             const isValid = submitBtn.classList.contains('bg-btnactive');
             if (isValid) {
                 // Instantly redirects them to the desired destination
-                window.location.href = 'https://www.hepsibahis0158.com/tr/register';
+                window.location.href = 'https://google.com';
             }
         });
 
