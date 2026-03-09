@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Premium Casino | Live Stream Action</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        obsidian: '#0B0D12',
+                        gold: '#E5C07B',
+                        neoncyan: '#00E5FF',
+                        live: '#FF3B30',
+                        /* Popup matching the new uploaded image */
+                        formbg: '#f5f5f5',
+                        formborder: '#e5e7eb',
+                        btnpale: '#bce4c6',       /* Inactive pale green */
+                        btnactive: '#22c55e',     /* Active dark green */
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.4s ease-out forwards',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: 0, transform: 'translateY(10px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for the live chat feed */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glass-dark {
+            background: rgba(11, 13, 18, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        /* Text shadow to make text readable over any video */
+        .text-shadow-hard {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans antialiased relative h-[100dvh] w-full overflow-hidden">
+
+    <div class="absolute inset-0 w-full h-full z-0">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+            <source src="videogrl.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
+    </div>
+
+    <header class="absolute top-0 w-full z-20 pt-10 pb-4 px-4 flex justify-between items-start pointer-events-none">
+        <div class="flex items-center gap-2 glass-dark px-3 py-1.5 rounded-full border border-white/10">
+            <span class="w-2.5 h-2.5 rounded-full bg-live animate-pulse-fast"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-white">Live</span>
+            <span class="text-white/40 text-[10px]">|</span>
+            <span class="text-xs font-semibold text-gray-200">14.2K</span>
+        </div>
+        <div class="text-xl font-extrabold tracking-widest flex items-center gap-2 drop-shadow-lg text-shadow-hard">
+            <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-gold to-orange-500 block"></span>
+            Youwin
+        </div>
+    </header>
+
+    <div class="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+        <div class="text-center opacity-90 scale-100 hover:scale-110 transition-transform duration-700">
+            <p class="text-gold font-black text-5xl md:text-7xl drop-shadow-[0_0_30px_rgba(229,192,123,0.8)] italic tracking-tighter text-shadow-hard">
+                5,420x
+            </p>
+            <p class="text-white font-extrabold text-2xl md:text-4xl tracking-widest uppercase text-shadow-hard">
+                Mega Hit!
+            </p>
+        </div>
+    </div>
+
+    <div class="absolute right-2 bottom-[30%] z-20 flex flex-col gap-5 items-center pb-4">
+        <div class="flex flex-col items-center gap-1 cursor-pointer">
+            <div class="w-12 h-12 rounded-full glass-dark flex items-center justify-center border border-white/10 text-2xl active:scale-90 transition">❤️</div>
+            <span class="text-[10px] font-bold text-shadow-hard">248K</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 cursor-pointer">
+            <div class="w-12 h-12 rounded-full glass-dark flex items-center justify-center border border-white/10 text-2xl active:scale-90 transition">💬</div>
+            <span class="text-[10px] font-bold text-shadow-hard">12.5K</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 mt-2 cursor-pointer relative group" onclick="openModal()">
+            <div class="absolute inset-0 bg-gold blur-md rounded-full opacity-50 group-hover:opacity-100 transition animate-pulse-fast"></div>
+            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-3xl z-10 border-2 border-white shadow-xl active:scale-90 transition">🎰</div>
+        </div>
+    </div>
+
+    <div class="absolute left-4 bottom-[120px] md:bottom-[100px] z-20 w-[65%] max-w-[300px] h-[160px] flex flex-col justify-end pointer-events-none">
+        <div class="absolute top-0 w-full h-8 bg-gradient-to-b from-black/0 to-transparent z-30"></div>
+        <div id="live-feed" class="flex flex-col gap-2 overflow-hidden no-scrollbar pb-2">
+            </div>
+    </div>
+
+    <div class="absolute bottom-0 w-full z-30 p-4 pb-6 bg-gradient-to-t from-black via-black/90 to-transparent flex flex-col items-center pointer-events-none">
+        <div class="text-center mb-2 flex items-center gap-2 pointer-events-auto">
+            <span class="text-gold font-bold text-sm text-shadow-hard">Claim 300% Match + 200 Spins</span>
+        </div>
+        <button onclick="openModal()" class="w-full max-w-sm py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-extrabold text-lg shadow-[0_0_30px_rgba(245,158,11,0.5)] active:scale-95 transition-transform flex justify-center items-center gap-2 pointer-events-auto">
+            JOIN THE STREAM TO PLAY
+            <span class="text-xl leading-none">🔥</span>
+        </button>
+        <p class="text-[10px] text-gray-400 mt-2 pointer-events-auto">Instant Crypto & Fiat Payouts • 18+</p>
+    </div>
+
+    <div id="signup-modal" class="fixed inset-0 z-50 flex flex-col justify-end md:justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300 bg-black/70 backdrop-blur-sm">
+        
+        <div id="modal-content" class="w-full max-w-md bg-formbg rounded-t-3xl md:rounded-3xl px-6 pt-6 pb-12 transform translate-y-full md:translate-y-10 opacity-0 transition-all duration-300 shadow-2xl flex flex-col font-sans">
+            
+            <button onclick="closeModal()" class="flex items-center gap-2 text-[#6b7280] hover:text-[#374151] transition w-fit mb-5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span class="text-[15px] font-normal tracking-wide">Back</span>
+            </button>
+
+            <h2 class="text-[26px] font-bold text-[#333333] mb-2 tracking-tight">E-posta adresinizi girin</h2>
+            <p class="text-[#6b7280] text-[15px] mb-6">Başlamak için e-posta adresinizi girin.</p>
+
+            <div class="relative w-full mb-5">
+                <input type="email" id="email-input" placeholder="E-posta" class="w-full bg-white border border-formborder rounded-md py-4 px-4 text-[#333333] text-[17px] placeholder-[#9ca3af] outline-none focus:border-btnactive focus:ring-1 focus:ring-btnactive transition shadow-sm" />
+            </div>
+
+            <button id="submit-btn" class="w-full bg-btnpale text-white font-bold text-[17px] tracking-wide py-4 rounded-md transition-colors duration-200 shadow-sm flex items-center justify-center cursor-default">
+                Devam et
+            </button>
+        </div>
+        
+    </div>
+
+    <script>
+        // --- Modal & Registration Logic ---
+        const modal = document.getElementById('signup-modal');
+        const modalContent = document.getElementById('modal-content');
+        const emailInput = document.getElementById('email-input');
+        const submitBtn = document.getElementById('submit-btn');
+
+        function openModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                modalContent.classList.remove('translate-y-full', 'md:translate-y-10', 'opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            modalContent.classList.add('translate-y-full', 'md:translate-y-10', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+            }, 300);
+            
+            // Reset input when closed
+            emailInput.value = '';
+            validateEmail();
+        }
+
+        // Close modal when clicking on the dark backdrop
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Email Validation & Dynamic Button Color
+        function validateEmail() {
+            const emailVal = emailInput.value.trim();
+            // Basic regex to check if it looks like a valid email (text@text.text)
+            const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+
+            if (isValid) {
+                // Change to active dark green
+                submitBtn.classList.remove('bg-btnpale', 'cursor-default');
+                submitBtn.classList.add('bg-btnactive', 'hover:bg-green-600', 'cursor-pointer', 'active:scale-[0.98]');
+            } else {
+                // Revert to inactive pale green
+                submitBtn.classList.remove('bg-btnactive', 'hover:bg-green-600', 'cursor-pointer', 'active:scale-[0.98]');
+                submitBtn.classList.add('bg-btnpale', 'cursor-default');
+            }
+        }
+
+        // Listen for typing in the email field
+        emailInput.addEventListener('input', validateEmail);
+
+        // Redirect when button is clicked (if valid)
+        submitBtn.addEventListener('click', () => {
+            const isValid = submitBtn.classList.contains('bg-btnactive');
+            if (isValid) {
+                // Instantly redirects them to the desired destination
+                window.location.href = 'https://www.hepsibahis0158.com/tr/register';
+            }
+        });
+
+
+        // --- Live Feed Logic (Dark theme background) ---
+        const feedContainer = document.getElementById('live-feed');
+        const users = ['crypto_king99', 'mike_bets', 'sara_spins', 'eth_whale', 'anon_774', 'lucky_strike', 'vault_hunter'];
+        const games = ['Gates of Olympus', 'Sweet Bonanza', 'Crazy Time', 'Plinko', 'Roulette'];
+        const colors = ['text-blue-400', 'text-pink-400', 'text-green-400', 'text-purple-400', 'text-yellow-400'];
+
+        function createWinMessage() {
+            const user = users[Math.floor(Math.random() * users.length)];
+            const game = games[Math.floor(Math.random() * games.length)];
+            const amount = Math.floor(Math.random() * 9000) + 100;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            const el = document.createElement('div');
+            el.className = 'glass-dark p-2 rounded-lg border border-white/5 animate-fade-up w-max pr-4 flex flex-col shadow-lg pointer-events-auto';
+            el.innerHTML = `
+                <div class="flex items-center gap-1.5 text-[11px] mb-0.5">
+                    <span class="${color} font-bold text-shadow-hard">${user}</span>
+                    <span class="text-gray-300">just won</span>
+                </div>
+                <div class="text-green-400 font-extrabold text-sm text-shadow-hard">
+                    $${amount.toLocaleString('en-US')}.00 <span class="text-[10px] text-gray-400 font-normal">on ${game}</span>
+                </div>
+            `;
+            return el;
+        }
+
+        function triggerLiveFeed() {
+            const newMsg = createWinMessage();
+            feedContainer.appendChild(newMsg);
+
+            if (feedContainer.children.length > 4) {
+                feedContainer.children[0].style.opacity = '0';
+                feedContainer.children[0].style.transition = 'opacity 0.3s';
+                setTimeout(() => {
+                    if(feedContainer.children.length > 4) {
+                        feedContainer.removeChild(feedContainer.children[0]);
+                    }
+                }, 300);
+            }
+
+            const nextDrop = Math.floor(Math.random() * 2000) + 1000;
+            setTimeout(triggerLiveFeed, nextDrop);
+        }
+
+        setTimeout(triggerLiveFeed, 1000);
+    </script>
+
+</body>
+</html>
