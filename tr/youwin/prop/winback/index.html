@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Youwin - 300₺ Dönüş Bonusu</title>
+<meta name="description" content="Seni özledik! 300₺ dönüş bonusu hazır. 12 saat sonra silinecek!">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#ffc800;--orange:#ff8c00;--red:#e63946;--green:#00c864;--dark:#0a0b10;--card:#12131c}
+body{background:var(--dark);color:#e8e8e8;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden}
+.wrap{max-width:420px;margin:0 auto;padding-bottom:24px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(230,57,70,.3)}50%{box-shadow:0 0 40px rgba(230,57,70,.6),0 0 80px rgba(255,140,0,.2)}}
+@keyframes countPulse{0%,100%{opacity:1}50%{opacity:.6}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.hero{text-align:center;padding:36px 20px 20px;animation:fadeUp .5s ease both}
+.hero-icon{font-size:48px;margin-bottom:8px}
+.hero h1{font-size:26px;font-weight:900;line-height:1.2;color:#fff}
+.hero h1 span{display:block;color:var(--gold)}
+.hero p{color:#888;font-size:13px;margin-top:6px}
+.urgent-box{margin:0 20px 16px;background:rgba(230,57,70,.08);border:1px solid rgba(230,57,70,.15);border-radius:10px;padding:10px 16px;text-align:center;animation:shake .5s ease 1s both}
+.urgent-text{font-size:11px;color:var(--red);font-weight:700}
+.countdown-wrap{padding:0 20px;text-align:center}
+.countdown{display:flex;gap:8px;justify-content:center;animation:fadeUp .5s ease .2s both}
+.cd-box{text-align:center}
+.cd-val{background:rgba(255,200,0,.1);border:1px solid rgba(255,200,0,.2);border-radius:10px;padding:10px 16px;font-size:28px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;min-width:56px}
+.cd-val.sec{animation:countPulse 1s ease infinite}
+.cd-lbl{font-size:9px;color:#666;margin-top:4px;letter-spacing:1px;font-weight:700}
+.section-title{font-size:12px;color:#666;font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.package{padding:24px 20px;animation:fadeUp .5s ease .3s both}
+.pkg-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.03);position:relative}
+.pkg-icon{font-size:28px;flex-shrink:0}
+.pkg-title{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.pkg-desc{font-size:12px;color:#666}
+.pkg-tag{font-size:8px;background:var(--red);color:#fff;padding:1px 6px;border-radius:3px;font-weight:800}
+.quote-box{margin:0 20px 20px;background:linear-gradient(135deg,rgba(255,200,0,.06),rgba(255,140,0,.03));border:1px solid rgba(255,200,0,.1);border-radius:14px;padding:16px 20px;text-align:center;animation:fadeUp .5s ease .5s both}
+.quote-text{font-size:13px;color:#ccc;line-height:1.6}
+.quote-text strong.gold{color:var(--gold)}
+.quote-text strong.green{color:var(--green)}
+.cta-wrap{padding:0 20px 12px;animation:fadeUp .6s ease .6s both}
+.cta-btn{display:block;width:100%;padding:18px 24px;background:linear-gradient(135deg,var(--red),#ff4444);border:none;border-radius:14px;color:#fff;font-size:19px;font-weight:800;cursor:pointer;letter-spacing:.5px;animation:glow 2s ease-in-out infinite,pulse 2.5s ease-in-out infinite;text-transform:uppercase;text-decoration:none;text-align:center}
+.cta-sub{font-size:11px;font-weight:600;opacity:.8;margin-top:2px}
+.trust{display:flex;justify-content:center;gap:20px;padding:16px 0}
+.trust span{font-size:10px;color:#555;font-weight:600}
+.footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.03)}
+.footer p{font-size:9px;color:#333;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-icon">🎁</div>
+    <h1>SENİ ÖZLEDİK! <span>300₺ DÖNÜŞ BONUSU</span></h1>
+    <p>Hesabına özel bonus yükledik. Kaçırma!</p>
+  </div>
+
+  <div class="urgent-box">
+    <div class="urgent-text">⚠️ BONUS 12 SAAT SONRA SİLİNECEK!</div>
+  </div>
+
+  <div class="countdown-wrap">
+    <div class="countdown">
+      <div class="cd-box"><div class="cd-val" id="cdH">12</div><div class="cd-lbl">SAAT</div></div>
+      <div class="cd-box"><div class="cd-val" id="cdM">00</div><div class="cd-lbl">DAK</div></div>
+      <div class="cd-box"><div class="cd-val sec" id="cdS">00</div><div class="cd-lbl">SN</div></div>
+    </div>
+  </div>
+
+  <div class="package">
+    <div class="section-title">🎁 Dönüş Paketinin İçinde</div>
+    <div class="pkg-item">
+      <div class="pkg-icon">💰</div>
+      <div>
+        <div class="pkg-title">300₺ Nakit Bonus <span class="pkg-tag">YENİ</span></div>
+        <div class="pkg-desc">Çevrim şartsız, anında kullanılabilir</div>
+      </div>
+    </div>
+    <div class="pkg-item">
+      <div class="pkg-icon">🎰</div>
+      <div>
+        <div class="pkg-title">100 Free Spin</div>
+        <div class="pkg-desc">Sweet Bonanza & Gates of Olympus</div>
+      </div>
+    </div>
+    <div class="pkg-item">
+      <div class="pkg-icon">🛡️</div>
+      <div>
+        <div class="pkg-title">%50 Kayıp İadesi <span class="pkg-tag">ÖZEL</span></div>
+        <div class="pkg-desc">İlk 3 gün kayıplarının yarısı geri</div>
+      </div>
+    </div>
+    <div class="pkg-item">
+      <div class="pkg-icon">⚡</div>
+      <div>
+        <div class="pkg-title">VIP Hızlı Çekim</div>
+        <div class="pkg-desc">Öncelikli çekim hakkı, 0 bekleme</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <div class="quote-text">"Senden uzak geçen her gün, <strong class="gold">kaçırdığın fırsatlar</strong> demek. Geri dön, <strong class="green">eskisinden daha çok kazan!</strong>"</div>
+  </div>
+
+  <div class="cta-wrap">
+    <a href="YOUR_TRACKING_LINK_HERE" class="cta-btn">300₺ BONUSUMU AL<div class="cta-sub">Hemen giriş yap · 12 saat kaldı</div></a>
+  </div>
+
+  <div class="trust"><span>🔒 SSL Güvenli</span><span>⚡ Anında Çekim</span><span>🏆 Lisanslı</span></div>
+  <div class="footer"><p>18+ | Sorumlu bahis oynayın | Kumar bağımlılığı konusunda yardım için ilgili kuruluşlara başvurun</p></div>
+</div>
+
+<script>
+let total=12*3600;
+function updateCD(){if(total<=0)return;total--;const h=Math.floor(total/3600),m=Math.floor((total%3600)/60),s=total%60;document.getElementById('cdH').textContent=String(h).padStart(2,'0');document.getElementById('cdM').textContent=String(m).padStart(2,'0');document.getElementById('cdS').textContent=String(s).padStart(2,'0')}
+setInterval(updateCD,1000);
+</script>
+</body>
+</html>
