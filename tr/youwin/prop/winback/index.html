@@ -28,8 +28,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ══ TOPBAR ══ exact Youwin */
 .topbar{background:var(--black);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{font-size:22px;font-weight:900;letter-spacing:-.5px;line-height:1}
-.logo-you{color:#fff}
-.logo-win{color:var(--green)}
+.logo-you{color:var(--red)}
+.logo-win{color:#fff}
 .top-btns{display:flex;gap:8px}
 .btn-login{padding:8px 16px;border:1px solid #555;border-radius:6px;background:transparent;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:border-color .15s}
 .btn-login:hover{border-color:#999}
@@ -42,17 +42,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .nav a.active{color:var(--green);border-bottom-color:var(--green)}
 
 /* ══ HERO BANNER ══ dark green like their promo banner */
-.hero{background:linear-gradient(135deg,#0a2a18 0%,#0d3520 40%,#103d25 70%,#0a2a18 100%);padding:28px 20px 24px;position:relative;overflow:hidden;animation:fadeUp .35s ease both}
+.hero{background:linear-gradient(135deg,#0a2a18 0%,#0d3520 40%,#103d25 70%,#0a2a18 100%);padding:22px 20px 20px;position:relative;overflow:hidden;animation:fadeUp .35s ease both}
 .hero::after{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,200,83,.15) 0%,transparent 70%)}
-.hero-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
-.hero-amount{font-size:46px;font-weight:900;color:#fff;line-height:1.05}
-.hero-amount .curr{color:var(--green);font-size:28px;vertical-align:top;margin-right:2px}
-.hero-title{font-size:16px;font-weight:800;color:var(--green);text-transform:uppercase;margin-top:4px}
-.hero-sub{font-size:19px;font-weight:800;color:#fff;text-transform:uppercase}
-.hero-desc{font-size:13px;color:rgba(255,255,255,.65);margin-top:10px;line-height:1.55}
+.hero-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.hero-amount{font-size:42px;font-weight:900;color:#fff;line-height:1.05}
+.hero-amount .curr{color:var(--green);font-size:26px;vertical-align:top;margin-right:2px}
+.hero-title{font-size:15px;font-weight:800;color:var(--green);text-transform:uppercase;margin-top:3px}
+.hero-sub{font-size:18px;font-weight:800;color:#fff;text-transform:uppercase}
+.hero-desc{font-size:12px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5}
 .hero-desc strong{color:var(--green)}
 .hero-brand{margin-top:10px;font-size:13px;color:rgba(255,255,255,.5)}
-.hero-brand b.y{color:#fff}.hero-brand b.w{color:var(--green)}
+.hero-brand b.y{color:var(--red)}.hero-brand b.w{color:#fff}
+.hero-cta{display:block;width:100%;padding:14px;background:var(--green);border:none;border-radius:8px;color:#fff;font-size:16px;font-weight:800;cursor:pointer;text-transform:uppercase;text-decoration:none;text-align:center;letter-spacing:.3px;margin-top:16px;animation:pulse 3s ease-in-out infinite;transition:background .15s;box-shadow:0 2px 12px rgba(0,200,83,.35)}
+.hero-cta:hover{background:var(--green-d)}
+.hero-cta-s{font-size:10px;font-weight:600;opacity:.85;margin-top:2px}
+.hero-cta-red{background:var(--red);box-shadow:0 2px 12px rgba(230,57,70,.35)}.hero-cta-red:hover{background:#c5303c}
+.hero-cta-purple{background:#a855f7;box-shadow:0 2px 12px rgba(168,85,247,.35)}.hero-cta-purple:hover{background:#9333ea}
 
 /* ══ LIVE BAR ══ */
 .live-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);font-weight:600}
@@ -86,7 +91,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .odd-l{font-size:9px;color:var(--muted);font-weight:600}
 .odd-v{font-size:15px;font-weight:800;color:var(--green)}
 
-/* ══ BENEFITS ══ */
+/* ══ SVG ICONS ══ */
+.ico{width:36px;height:36px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ico svg{width:20px;height:20px}
+.ico-sm{width:20px;height:20px;display:inline-block;vertical-align:middle}
 .ben{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
 .ben:last-child{border:none}
 .ben-ic{width:36px;height:36px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
@@ -215,17 +223,18 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="hero-title" style="color:var(--red)">Seni Özledik!</div>
     <div class="hero-sub">Dönüş Bonusu Hazır</div>
     <div class="hero-desc">Hesabına özel bonus yükledik. <strong style="color:var(--red)">12 saat sonra silinecek!</strong></div>
+    <a href="YOUR_TRACKING_LINK_HERE" class="hero-cta hero-cta-red">300₺ Bonusumu Al<div class="hero-cta-s">Hemen giriş yap · 12 saat kaldı</div></a>
   </div>
-  <div class="urg"><div class="urg-t">⚠️ BONUS 12 SAAT SONRA SİLİNECEK!</div></div>
+  <div class="urg"><div class="urg-t">⚠ BONUS 12 SAAT SONRA SİLİNECEK!</div></div>
   <div class="cd-wrap"><div class="cd-row"><div class="cd-box"><div class="cd-val" id="cH">12</div><div class="cd-lbl">Saat</div></div><div class="cd-box"><div class="cd-val" id="cM">00</div><div class="cd-lbl">Dak</div></div><div class="cd-box"><div class="cd-val s" id="cS">00</div><div class="cd-lbl">Sn</div></div></div></div>
-  <div class="sec"><div class="sec-t">🎁 Dönüş Paketinin İçinde</div>
-    <div class="pkg"><div class="pkg-i">💰</div><div><div class="pkg-tt">300₺ Nakit Bonus <span class="pkg-tg">YENİ</span></div><div class="pkg-d">Çevrim şartsız, anında kullanılabilir</div></div></div>
-    <div class="pkg"><div class="pkg-i">🎰</div><div><div class="pkg-tt">100 Free Spin</div><div class="pkg-d">Sweet Bonanza & Gates of Olympus</div></div></div>
-    <div class="pkg"><div class="pkg-i">🛡️</div><div><div class="pkg-tt">%50 Kayıp İadesi <span class="pkg-tg">ÖZEL</span></div><div class="pkg-d">İlk 3 gün kayıplarının yarısı geri</div></div></div>
-    <div class="pkg"><div class="pkg-i">⚡</div><div><div class="pkg-tt">VIP Hızlı Çekim</div><div class="pkg-d">Öncelikli çekim hakkı, 0 bekleme</div></div></div>
+  <div class="sec"><div class="sec-t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><rect x="3" y="8" width="18" height="14" rx="2"/><path d="M12 8v14M3 12h18M7.5 8a2.5 2.5 0 010-5C9 3 12 8 12 8M16.5 8a2.5 2.5 0 000-5C15 3 12 8 12 8"/></svg> Dönüş Paketinin İçinde</div>
+    <div class="pkg"><div class="pkg-i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00c853" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div><div class="pkg-tt">300₺ Nakit Bonus <span class="pkg-tg">YENİ</span></div><div class="pkg-d">Çevrim şartsız, anında kullanılabilir</div></div></div>
+    <div class="pkg"><div class="pkg-i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 4v16M16 4v16M2 12h20"/></svg></div><div><div class="pkg-tt">100 Free Spin</div><div class="pkg-d">Sweet Bonanza & Gates of Olympus</div></div></div>
+    <div class="pkg"><div class="pkg-i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="pkg-tt">%50 Kayıp İadesi <span class="pkg-tg">ÖZEL</span></div><div class="pkg-d">İlk 3 gün kayıplarının yarısı geri</div></div></div>
+    <div class="pkg"><div class="pkg-i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="pkg-tt">VIP Hızlı Çekim</div><div class="pkg-d">Öncelikli çekim hakkı, 0 bekleme</div></div></div>
   </div>
-  <div class="cta-w"><a href="YOUR_TRACKING_LINK_HERE" class="cta cta-red">300₺ Bonusumu Al<div class="cta-s">Hemen giriş yap · 12 saat kaldı</div></a></div>
-<div class="trust"><span>🔒 SSL Güvenli</span><span>⚡ Anında Çekim</span><span>🏆 Lisanslı</span></div>
+
+<div class="trust"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> SSL Güvenli</span><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Anında Çekim</span><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><path d="M12 15l-2 5h4l-2-5zM6 9h12l-1.5 4H7.5L6 9z"/><circle cx="12" cy="6" r="3"/></svg> Lisanslı</span></div>
 <div class="foot"><p>18+ | Sorumlu bahis oynayın | Kumar bağımlılığı konusunda yardım için ilgili kuruluşlara başvurun</p></div>
 </div>
 <script>let t=43200;setInterval(()=>{if(t<=0)return;t--;document.getElementById('cH').textContent=String(Math.floor(t/3600)).padStart(2,'0');document.getElementById('cM').textContent=String(Math.floor((t%3600)/60)).padStart(2,'0');document.getElementById('cS').textContent=String(t%60).padStart(2,'0')},1000);</script>

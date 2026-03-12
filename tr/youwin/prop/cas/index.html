@@ -28,8 +28,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ══ TOPBAR ══ exact Youwin */
 .topbar{background:var(--black);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{font-size:22px;font-weight:900;letter-spacing:-.5px;line-height:1}
-.logo-you{color:#fff}
-.logo-win{color:var(--green)}
+.logo-you{color:var(--red)}
+.logo-win{color:#fff}
 .top-btns{display:flex;gap:8px}
 .btn-login{padding:8px 16px;border:1px solid #555;border-radius:6px;background:transparent;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:border-color .15s}
 .btn-login:hover{border-color:#999}
@@ -42,17 +42,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .nav a.active{color:var(--green);border-bottom-color:var(--green)}
 
 /* ══ HERO BANNER ══ dark green like their promo banner */
-.hero{background:linear-gradient(135deg,#0a2a18 0%,#0d3520 40%,#103d25 70%,#0a2a18 100%);padding:28px 20px 24px;position:relative;overflow:hidden;animation:fadeUp .35s ease both}
+.hero{background:linear-gradient(135deg,#0a2a18 0%,#0d3520 40%,#103d25 70%,#0a2a18 100%);padding:22px 20px 20px;position:relative;overflow:hidden;animation:fadeUp .35s ease both}
 .hero::after{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,200,83,.15) 0%,transparent 70%)}
-.hero-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
-.hero-amount{font-size:46px;font-weight:900;color:#fff;line-height:1.05}
-.hero-amount .curr{color:var(--green);font-size:28px;vertical-align:top;margin-right:2px}
-.hero-title{font-size:16px;font-weight:800;color:var(--green);text-transform:uppercase;margin-top:4px}
-.hero-sub{font-size:19px;font-weight:800;color:#fff;text-transform:uppercase}
-.hero-desc{font-size:13px;color:rgba(255,255,255,.65);margin-top:10px;line-height:1.55}
+.hero-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.hero-amount{font-size:42px;font-weight:900;color:#fff;line-height:1.05}
+.hero-amount .curr{color:var(--green);font-size:26px;vertical-align:top;margin-right:2px}
+.hero-title{font-size:15px;font-weight:800;color:var(--green);text-transform:uppercase;margin-top:3px}
+.hero-sub{font-size:18px;font-weight:800;color:#fff;text-transform:uppercase}
+.hero-desc{font-size:12px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5}
 .hero-desc strong{color:var(--green)}
 .hero-brand{margin-top:10px;font-size:13px;color:rgba(255,255,255,.5)}
-.hero-brand b.y{color:#fff}.hero-brand b.w{color:var(--green)}
+.hero-brand b.y{color:var(--red)}.hero-brand b.w{color:#fff}
+.hero-cta{display:block;width:100%;padding:14px;background:var(--green);border:none;border-radius:8px;color:#fff;font-size:16px;font-weight:800;cursor:pointer;text-transform:uppercase;text-decoration:none;text-align:center;letter-spacing:.3px;margin-top:16px;animation:pulse 3s ease-in-out infinite;transition:background .15s;box-shadow:0 2px 12px rgba(0,200,83,.35)}
+.hero-cta:hover{background:var(--green-d)}
+.hero-cta-s{font-size:10px;font-weight:600;opacity:.85;margin-top:2px}
+.hero-cta-red{background:var(--red);box-shadow:0 2px 12px rgba(230,57,70,.35)}.hero-cta-red:hover{background:#c5303c}
+.hero-cta-purple{background:#a855f7;box-shadow:0 2px 12px rgba(168,85,247,.35)}.hero-cta-purple:hover{background:#9333ea}
 
 /* ══ LIVE BAR ══ */
 .live-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);font-weight:600}
@@ -86,7 +91,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .odd-l{font-size:9px;color:var(--muted);font-weight:600}
 .odd-v{font-size:15px;font-weight:800;color:var(--green)}
 
-/* ══ BENEFITS ══ */
+/* ══ SVG ICONS ══ */
+.ico{width:36px;height:36px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ico svg{width:20px;height:20px}
+.ico-sm{width:20px;height:20px;display:inline-block;vertical-align:middle}
 .ben{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
 .ben:last-child{border:none}
 .ben-ic{width:36px;height:36px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
@@ -216,24 +224,25 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="hero-sub">Bonusu</div>
     <div class="hero-desc">Youwin ilk para yatırma işleminiz için <strong style="color:#a855f7">₺15.000'ye kadar %100 Casino Bonusu</strong> sunmaktadır.</div>
     <div class="hero-brand"><b class="y">you</b><b class="w">win</b> 'de başla!</div>
+    <a href="YOUR_TRACKING_LINK_HERE" class="hero-cta hero-cta-purple">Kayıt Ol - ₺15.000 Bonus Al<div class="hero-cta-s">Casino deneyimine hemen başla</div></a>
   </div>
-  <div class="jp"><div class="jp-lb">🔴 Canlı Jackpot Havuzu</div><div class="jp-v" id="jp">847.293₺</div><div class="jp-up">↑ Her saniye artıyor</div></div>
-  <div class="sec"><div class="sec-t">🔥 En Çok Kazandıran Oyunlar</div>
+  <div class="jp"><div class="jp-lb">● Canlı Jackpot Havuzu</div><div class="jp-v" id="jp">847.293₺</div><div class="jp-up">↑ Her saniye artıyor</div></div>
+  <div class="sec"><div class="sec-t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e63946" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.5-2-1.5-3-.5-4.5M5 8.5c-1.5 1.5-2 3.5-2 6 0 4.42 3.58 8 8 8s8-3.58 8-8c0-2-1.5-4.5-3-6"/></svg> En Çok Kazandıran Oyunlar</div>
     <div class="gm-g">
-      <div class="gm hot"><div class="hot-t">HOT</div><div class="gm-i">🍬</div><div class="gm-n">Sweet Bonanza</div><div class="gm-m">Max: x21,175</div><div class="gm-r">RTP: 96.5%</div></div>
-      <div class="gm hot"><div class="hot-t">HOT</div><div class="gm-i">⚡</div><div class="gm-n">Gates of Olympus</div><div class="gm-m">Max: x5,000</div><div class="gm-r">RTP: 96.5%</div></div>
-      <div class="gm"><div class="gm-i">🐟</div><div class="gm-n">Big Bass Splash</div><div class="gm-m">Max: x4,000</div><div class="gm-r">RTP: 96.7%</div></div>
-      <div class="gm"><div class="gm-i">🐕</div><div class="gm-n">Dog House</div><div class="gm-m">Max: x6,750</div><div class="gm-r">RTP: 96.5%</div></div>
+      <div class="gm hot"><div class="hot-t">HOT</div><div class="gm-i" style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#ff6b9d,#c94277);display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="8" cy="14" r="4" fill="#ffeb3b" stroke="#fff" stroke-width="1.5"/><circle cx="16" cy="14" r="4" fill="#4caf50" stroke="#fff" stroke-width="1.5"/><circle cx="12" cy="9" r="4" fill="#f44336" stroke="#fff" stroke-width="1.5"/><circle cx="12" cy="9" r="1.5" fill="#fff" opacity=".4"/></svg></div><div class="gm-n">Sweet Bonanza</div><div class="gm-m">Max: x21,175</div><div class="gm-r">RTP: 96.5%</div></div>
+      <div class="gm hot"><div class="hot-t">HOT</div><div class="gm-i" style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#1e3a5f,#0d1b2a);display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-2 8 11-12h-7l2-8z" fill="#ffd700" stroke="#ff8f00" stroke-width="1"/><circle cx="12" cy="12" r="10" stroke="#ffd700" stroke-width="1" opacity=".3"/></svg></div><div class="gm-n">Gates of Olympus</div><div class="gm-m">Max: x5,000</div><div class="gm-r">RTP: 96.5%</div></div>
+      <div class="gm"><div class="gm-i" style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#0288d1,#01579b);display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12c0 0 3-5 8-5s8 5 8 5-3 5-8 5-8-5-8-5z" fill="#4fc3f7" stroke="#fff" stroke-width="1.2"/><circle cx="15" cy="11" r="1.5" fill="#fff"/><path d="M20 12l3-2v4l-3-2z" fill="#81d4fa"/><path d="M2 8c1 2 2 3 4 2" stroke="#80deea" stroke-width="1.5" stroke-linecap="round"/><path d="M3 15c1-1 2-2 3-1" stroke="#80deea" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="gm-n">Big Bass Splash</div><div class="gm-m">Max: x4,000</div><div class="gm-r">RTP: 96.7%</div></div>
+      <div class="gm"><div class="gm-i" style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#e65100,#bf360c);display:flex;align-items:center;justify-content:center;margin:0 auto 6px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12l9-8 9 8" stroke="#ffcc80" stroke-width="2" stroke-linecap="round"/><rect x="5" y="12" width="14" height="9" rx="1" fill="#ffcc80" stroke="#fff" stroke-width="1"/><circle cx="9" cy="7" r="2" fill="#8d6e63"/><circle cx="15" cy="7" r="2" fill="#8d6e63"/><circle cx="12" cy="10" r="2.5" fill="#6d4c41"/><ellipse cx="10" cy="17" rx="1.5" ry="2" fill="#8d6e63"/><ellipse cx="14" cy="17" rx="1.5" ry="2" fill="#8d6e63"/></svg></div><div class="gm-n">Dog House</div><div class="gm-m">Max: x6,750</div><div class="gm-r">RTP: 96.5%</div></div>
     </div>
   </div>
-  <div class="sec"><div class="sec-t">💰 Son Kazananlar</div>
+  <div class="sec"><div class="sec-t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00c853" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Son Kazananlar</div>
     <div class="win"><div><div class="w-n">M***t K.</div><div class="w-m">İstanbul · Sweet Bonanza</div></div><div class="w-a">+23.450₺</div></div>
     <div class="win"><div><div class="w-n">A***a Y.</div><div class="w-m">Ankara · Gates of Olympus</div></div><div class="w-a">+8.720₺</div></div>
     <div class="win"><div><div class="w-n">E***n S.</div><div class="w-m">İzmir · Sweet Bonanza</div></div><div class="w-a">+45.100₺</div></div>
   </div>
   <div class="ofr"><div class="ofr-n">₺15.000</div><div class="ofr-l">Casino Hoş Geldin Bonusu</div><div class="ofr-s">İlk yatırıma %100 bonus</div></div>
-  <div class="cta-w"><a href="YOUR_TRACKING_LINK_HERE" class="cta" style="background:#a855f7;box-shadow:0 2px 8px rgba(168,85,247,.25)">Kayıt Ol<div class="cta-s">₺15.000 Casino Bonusu Al</div></a></div>
-<div class="trust"><span>🔒 SSL Güvenli</span><span>⚡ Anında Çekim</span><span>🏆 Lisanslı</span></div>
+
+<div class="trust"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> SSL Güvenli</span><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Anında Çekim</span><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><path d="M12 15l-2 5h4l-2-5zM6 9h12l-1.5 4H7.5L6 9z"/><circle cx="12" cy="6" r="3"/></svg> Lisanslı</span></div>
 <div class="foot"><p>18+ | Sorumlu bahis oynayın | Kumar bağımlılığı konusunda yardım için ilgili kuruluşlara başvurun</p></div>
 </div>
 <script>let jp=847293;setInterval(()=>{jp+=Math.floor(Math.random()*50)+10;document.getElementById('jp').textContent=jp.toLocaleString('tr-TR')+'₺'},800);</script>

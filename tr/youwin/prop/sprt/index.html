@@ -28,8 +28,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ══ TOPBAR ══ exact Youwin */
 .topbar{background:var(--black);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{font-size:22px;font-weight:900;letter-spacing:-.5px;line-height:1}
-.logo-you{color:#fff}
-.logo-win{color:var(--green)}
+.logo-you{color:var(--red)}
+.logo-win{color:#fff}
 .top-btns{display:flex;gap:8px}
 .btn-login{padding:8px 16px;border:1px solid #555;border-radius:6px;background:transparent;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:border-color .15s}
 .btn-login:hover{border-color:#999}
@@ -42,17 +42,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .nav a.active{color:var(--green);border-bottom-color:var(--green)}
 
 /* ══ HERO BANNER ══ dark green like their promo banner */
-.hero{background:linear-gradient(135deg,#0a2a18 0%,#0d3520 40%,#103d25 70%,#0a2a18 100%);padding:28px 20px 24px;position:relative;overflow:hidden;animation:fadeUp .35s ease both}
+.hero{background:linear-gradient(135deg,#0a2a18 0%,#0d3520 40%,#103d25 70%,#0a2a18 100%);padding:22px 20px 20px;position:relative;overflow:hidden;animation:fadeUp .35s ease both}
 .hero::after{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,200,83,.15) 0%,transparent 70%)}
-.hero-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
-.hero-amount{font-size:46px;font-weight:900;color:#fff;line-height:1.05}
-.hero-amount .curr{color:var(--green);font-size:28px;vertical-align:top;margin-right:2px}
-.hero-title{font-size:16px;font-weight:800;color:var(--green);text-transform:uppercase;margin-top:4px}
-.hero-sub{font-size:19px;font-weight:800;color:#fff;text-transform:uppercase}
-.hero-desc{font-size:13px;color:rgba(255,255,255,.65);margin-top:10px;line-height:1.55}
+.hero-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.hero-amount{font-size:42px;font-weight:900;color:#fff;line-height:1.05}
+.hero-amount .curr{color:var(--green);font-size:26px;vertical-align:top;margin-right:2px}
+.hero-title{font-size:15px;font-weight:800;color:var(--green);text-transform:uppercase;margin-top:3px}
+.hero-sub{font-size:18px;font-weight:800;color:#fff;text-transform:uppercase}
+.hero-desc{font-size:12px;color:rgba(255,255,255,.65);margin-top:8px;line-height:1.5}
 .hero-desc strong{color:var(--green)}
 .hero-brand{margin-top:10px;font-size:13px;color:rgba(255,255,255,.5)}
-.hero-brand b.y{color:#fff}.hero-brand b.w{color:var(--green)}
+.hero-brand b.y{color:var(--red)}.hero-brand b.w{color:#fff}
+.hero-cta{display:block;width:100%;padding:14px;background:var(--green);border:none;border-radius:8px;color:#fff;font-size:16px;font-weight:800;cursor:pointer;text-transform:uppercase;text-decoration:none;text-align:center;letter-spacing:.3px;margin-top:16px;animation:pulse 3s ease-in-out infinite;transition:background .15s;box-shadow:0 2px 12px rgba(0,200,83,.35)}
+.hero-cta:hover{background:var(--green-d)}
+.hero-cta-s{font-size:10px;font-weight:600;opacity:.85;margin-top:2px}
+.hero-cta-red{background:var(--red);box-shadow:0 2px 12px rgba(230,57,70,.35)}.hero-cta-red:hover{background:#c5303c}
+.hero-cta-purple{background:#a855f7;box-shadow:0 2px 12px rgba(168,85,247,.35)}.hero-cta-purple:hover{background:#9333ea}
 
 /* ══ LIVE BAR ══ */
 .live-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);font-weight:600}
@@ -86,7 +91,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .odd-l{font-size:9px;color:var(--muted);font-weight:600}
 .odd-v{font-size:15px;font-weight:800;color:var(--green)}
 
-/* ══ BENEFITS ══ */
+/* ══ SVG ICONS ══ */
+.ico{width:36px;height:36px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ico svg{width:20px;height:20px}
+.ico-sm{width:20px;height:20px;display:inline-block;vertical-align:middle}
 .ben{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
 .ben:last-child{border:none}
 .ben-ic{width:36px;height:36px;border-radius:8px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
@@ -216,21 +224,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="hero-sub">Bonusu</div>
     <div class="hero-desc">Youwin ilk para yatırma işleminiz için <strong>₺10.000'ye kadar %100 Bedava bahis</strong> sunmaktadır.</div>
     <div class="hero-brand"><b class="y">you</b><b class="w">win</b> 'de başla!</div>
+    <a href="YOUR_TRACKING_LINK_HERE" class="hero-cta">Kayıt Ol - ₺10.000 Bonus Al<div class="hero-cta-s">Sadece 30 saniye · Hemen başla</div></a>
   </div>
   <div class="live-bar"><div class="live-dot"></div><span><strong id="lc">12.847</strong> kişi şu an canlı bahis yapıyor</span></div>
-  <div class="cd-wrap"><div class="cd-label">⚠️ Teklif sona eriyor</div><div class="cd-row"><div class="cd-box"><div class="cd-val" id="cH">02</div><div class="cd-lbl">Saat</div></div><div class="cd-box"><div class="cd-val" id="cM">00</div><div class="cd-lbl">Dak</div></div><div class="cd-box"><div class="cd-val s" id="cS">00</div><div class="cd-lbl">Sn</div></div></div></div>
+  <div class="cd-wrap"><div class="cd-label">⚠ Teklif sona eriyor</div><div class="cd-row"><div class="cd-box"><div class="cd-val" id="cH">02</div><div class="cd-lbl">Saat</div></div><div class="cd-box"><div class="cd-val" id="cM">00</div><div class="cd-lbl">Dak</div></div><div class="cd-box"><div class="cd-val s" id="cS">00</div><div class="cd-lbl">Sn</div></div></div></div>
   <div class="sec"><div class="sec-t">Bugünkü Popüler Maçlar</div>
     <div class="card hl"><div class="row"><span class="match-t">Galatasaray vs Beşiktaş</span><span class="live-tag">CANLI</span></div><div class="odds"><div class="odd"><div class="odd-l">1</div><div class="odd-v">1.85</div></div><div class="odd"><div class="odd-l">X</div><div class="odd-v">3.40</div></div><div class="odd"><div class="odd-l">2</div><div class="odd-v">4.10</div></div></div></div>
     <div class="card"><div class="row"><span class="match-t">Fenerbahçe vs Trabzonspor</span></div><div class="odds"><div class="odd"><div class="odd-l">1</div><div class="odd-v">1.65</div></div><div class="odd"><div class="odd-l">X</div><div class="odd-v">3.80</div></div><div class="odd"><div class="odd-l">2</div><div class="odd-v">5.20</div></div></div></div>
     <div class="card"><div class="row"><span class="match-t">Başakşehir vs Antalyaspor</span></div><div class="odds"><div class="odd"><div class="odd-l">1</div><div class="odd-v">2.10</div></div><div class="odd"><div class="odd-l">X</div><div class="odd-v">3.20</div></div><div class="odd"><div class="odd-l">2</div><div class="odd-v">3.50</div></div></div></div>
   </div>
   <div class="sec"><div class="sec-t">Neden Youwin?</div>
-    <div class="ben"><div class="ben-ic">🛡️</div><div><div class="ben-tt">₺10.000'ye Kadar %100 Bedava Bahis</div><div class="ben-d">İlk yatırımınıza tam eşleşme bonusu</div></div></div>
-    <div class="ben"><div class="ben-ic">📊</div><div><div class="ben-tt">En Yüksek Oranlar</div><div class="ben-d">Süper Lig, UEFA, NBA ve daha fazlası</div></div></div>
-    <div class="ben"><div class="ben-ic">⚡</div><div><div class="ben-tt">Anında Çekim</div><div class="ben-d">Papara, kripto, banka ile dakikalar içinde</div></div></div>
+    <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#00c853" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="ben-tt">₺10.000'ye Kadar %100 Bedava Bahis</div><div class="ben-d">İlk yatırımınıza tam eşleşme bonusu</div></div></div>
+    <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#00c853" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div><div class="ben-tt">En Yüksek Oranlar</div><div class="ben-d">Süper Lig, UEFA, NBA ve daha fazlası</div></div></div>
+    <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#00c853" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="ben-tt">Anında Çekim</div><div class="ben-d">Jeton, kripto, banka ile dakikalar içinde</div></div></div>
   </div>
-  <div class="cta-w"><a href="YOUR_TRACKING_LINK_HERE" class="cta">Kayıt Ol<div class="cta-s">₺10.000 Spor Hoş Geldin Bonusu Al</div></a></div>
-<div class="trust"><span>🔒 SSL Güvenli</span><span>⚡ Anında Çekim</span><span>🏆 Lisanslı</span></div>
+
+<div class="trust"><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> SSL Güvenli</span><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Anında Çekim</span><span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" style="vertical-align:-1px"><path d="M12 15l-2 5h4l-2-5zM6 9h12l-1.5 4H7.5L6 9z"/><circle cx="12" cy="6" r="3"/></svg> Lisanslı</span></div>
 <div class="foot"><p>18+ | Sorumlu bahis oynayın | Kumar bağımlılığı konusunda yardım için ilgili kuruluşlara başvurun</p></div>
 </div>
 <script>let t=7200;setInterval(()=>{if(t<=0)return;t--;document.getElementById('cH').textContent=String(Math.floor(t/3600)).padStart(2,'0');document.getElementById('cM').textContent=String(Math.floor((t%3600)/60)).padStart(2,'0');document.getElementById('cS').textContent=String(t%60).padStart(2,'0')},1000);let lc=12847;setInterval(()=>{lc+=Math.floor(Math.random()*5)-1;document.getElementById('lc').textContent=lc.toLocaleString('tr-TR')},2200);</script>
