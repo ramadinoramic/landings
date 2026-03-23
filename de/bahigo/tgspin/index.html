@@ -6,15 +6,11 @@
 <title>Glücksrad Bonus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
-
-<!-- ═══ Telegram Mini App SDK ═══ -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* These get overridden by Telegram theme if available */
   --gold: #D4A843;
   --gold-light: #F2D477;
   --gold-dark: #A67C2E;
@@ -30,7 +26,6 @@
 }
 
 html {
-  /* Respect Telegram's safe areas (notch, status bar) */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
@@ -41,7 +36,6 @@ html, body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  /* Prevent overscroll bounce in TMA */
   overscroll-behavior: none;
 }
 
@@ -63,15 +57,15 @@ body::before {
   margin: 0 auto;
   padding: 12px 16px 32px;
   min-height: 100vh;
-  min-height: 100dvh; /* dynamic viewport for TMA */
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* ── User greeting (TMA-exclusive) ── */
+/* ── User greeting ── */
 .user-greeting {
-  display: none; /* shown via JS when TMA data available */
+  display: none;
   align-items: center;
   gap: 8px;
   background: rgba(255,255,255,0.04);
@@ -86,18 +80,10 @@ body::before {
   width: 26px; height: 26px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--bg-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--bg-deep);
 }
-.user-greeting span {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-muted);
-}
+.user-greeting span { font-size: 12px; font-weight: 500; color: var(--text-muted); }
 .user-greeting strong { color: var(--text-primary); }
 
 /* ── Top badge ── */
@@ -145,111 +131,34 @@ body::before {
   margin-top: 4px;
 }
 
-/* ── Stepper ── */
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin: 12px 0 8px;
-  width: 100%;
-  max-width: 300px;
-  animation: fadeSlideDown 0.4s ease-out 0.15s both;
-}
-.step-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-.step-circle {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  border: 2px solid rgba(255,255,255,0.08);
-  background: var(--bg-card);
-  color: var(--text-muted);
-  transition: all 0.4s;
-  z-index: 2;
-}
-.step-item.active .step-circle {
-  border-color: var(--gold);
-  background: linear-gradient(135deg, rgba(212,168,67,0.2), rgba(212,168,67,0.05));
-  color: var(--gold-light);
-  box-shadow: 0 0 10px var(--glow-gold);
-}
-.step-item.completed .step-circle {
-  border-color: var(--accent-green);
-  background: rgba(46,204,113,0.15);
-  color: var(--accent-green);
-}
-.step-label {
-  font-size: 9px;
-  color: var(--text-muted);
-  margin-top: 3px;
-  font-weight: 500;
-  transition: color 0.4s;
-}
-.step-item.active .step-label { color: var(--gold-light); }
-.step-item.completed .step-label { color: var(--accent-green); }
-.step-line {
-  flex: 1; height: 2px;
-  background: rgba(255,255,255,0.06);
-  margin-bottom: 16px;
-  overflow: hidden;
-}
-.step-line .fill {
-  height: 100%; width: 100%;
-  background: var(--accent-green);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s ease;
-}
-.step-line.filled .fill { transform: scaleX(1); }
-
 /* ── Wheel ── */
 .wheel-section {
   position: relative;
-  width: 280px; height: 280px;
-  margin: 10px auto 10px;
+  width: 290px; height: 290px;
+  margin: 14px auto 14px;
   animation: fadeScale 0.6s ease-out 0.2s both;
 }
 .wheel-outer-ring {
-  position: absolute;
-  inset: -6px;
+  position: absolute; inset: -6px;
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
   padding: 3px;
   animation: ring-rotate 20s linear infinite;
 }
-.wheel-outer-ring-inner {
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  background: var(--bg-deep);
-}
-.wheel-container {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  overflow: hidden;
-}
+.wheel-outer-ring-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--bg-deep); }
+.wheel-container { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; }
 canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
+
 .wheel-center-btn {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 68px; height: 68px;
+  width: 72px; height: 72px;
   border-radius: 50%;
   border: 3px solid var(--gold);
   background: radial-gradient(circle at 40% 35%, #1f2035, var(--bg-deep));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
   transition: all 0.2s;
   box-shadow: 0 0 18px var(--glow-gold);
   -webkit-tap-highlight-color: transparent;
@@ -257,24 +166,21 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 .wheel-center-btn:active { transform: translate(-50%, -50%) scale(0.94); }
 .wheel-center-btn span {
   font-family: 'Space Mono', monospace;
-  font-weight: 700;
-  font-size: 10px;
+  font-weight: 700; font-size: 11px;
   color: var(--gold-light);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  text-align: center;
-  line-height: 1.3;
+  text-align: center; line-height: 1.3;
 }
 .wheel-center-btn.disabled { opacity: 0.5; pointer-events: none; }
+
 .wheel-pointer {
-  position: absolute;
-  top: -5px; left: 50%;
-  transform: translateX(-50%);
-  z-index: 12;
+  position: absolute; top: -5px; left: 50%;
+  transform: translateX(-50%); z-index: 12;
   width: 0; height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 24px solid var(--gold);
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-top: 26px solid var(--gold);
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
 }
 
@@ -283,7 +189,7 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
   background: linear-gradient(145deg, rgba(212,168,67,0.12), rgba(212,168,67,0.03));
   border: 1px solid rgba(212,168,67,0.3);
   border-radius: 14px;
-  padding: 16px;
+  padding: 18px;
   text-align: center;
   width: 100%;
   position: relative;
@@ -291,158 +197,103 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 }
 .prize-card::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: radial-gradient(circle at 50% 0%, rgba(212,168,67,0.1), transparent 70%);
   pointer-events: none;
 }
-.prize-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; }
+.prize-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; }
 .prize-amount {
   font-family: 'Space Mono', monospace;
-  font-size: 38px;
-  font-weight: 700;
+  font-size: 42px; font-weight: 700;
   color: var(--gold-light);
-  text-shadow: 0 0 25px var(--glow-gold);
+  text-shadow: 0 0 30px var(--glow-gold);
   line-height: 1.1;
 }
-.prize-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+.prize-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-/* ── Gate Card ── */
-.gate-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(42,171,238,0.2);
-  border-radius: 14px;
-  padding: 16px;
-  margin-top: 10px;
-  width: 100%;
-}
-.gate-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.gate-tg-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #2AABEE, #1E96D1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.gate-card-header .info h3 { font-size: 14px; font-weight: 700; }
-.gate-card-header .info p { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
-
-.gate-perks {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 14px;
-}
-.perk-chip {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 7px 6px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-align: center;
-}
-.perk-chip .emoji { font-size: 14px; }
-
-.gate-actions { display: flex; flex-direction: column; gap: 8px; }
-
-/* ── Buttons ── */
+/* ── CTA Buttons ── */
 .cta-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; width: 100%;
+  padding: 15px 20px;
+  border: none; border-radius: 12px;
   font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 .cta-btn svg { flex-shrink: 0; }
+
 .cta-btn.primary {
   background: linear-gradient(135deg, var(--gold), var(--gold-dark));
   color: var(--bg-deep);
-  box-shadow: 0 4px 16px var(--glow-gold);
+  box-shadow: 0 4px 20px var(--glow-gold);
 }
-.cta-btn.telegram {
-  background: linear-gradient(135deg, #2AABEE, #1E96D1);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(42,171,238,0.3);
-}
-.cta-btn.verify {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: var(--text-primary);
-}
-.cta-btn.verify.checking { pointer-events: none; opacity: 0.7; }
-.cta-btn.success {
+.cta-btn.primary:active { transform: scale(0.97); }
+
+/* Big green offer button */
+.cta-btn.offer {
   background: linear-gradient(135deg, var(--accent-green), #27ae60);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(46,204,113,0.3);
+  box-shadow: 0 4px 20px rgba(46,204,113,0.35);
+  font-size: 16px;
+  padding: 17px 24px;
 }
+.cta-btn.offer:active { transform: scale(0.97); }
+
+/* Smaller secondary channel button */
+.cta-btn.secondary {
+  background: var(--bg-surface);
+  border: 1px solid rgba(42,171,238,0.2);
+  color: var(--accent-blue);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 20px;
+}
+.cta-btn.secondary:active { transform: scale(0.97); }
+
 .cta-btn .shimmer {
   position: absolute;
   top: 0; left: -100%;
   width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
   animation: shimmer 3s infinite;
 }
 .cta-note { text-align: center; font-size: 10px; color: var(--text-muted); margin-top: 5px; }
 
-/* ── Verify status ── */
-.verify-status {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 6px;
-}
-.verify-status.show { display: flex; }
-.verify-status.error {
-  background: rgba(231,76,60,0.1);
-  border: 1px solid rgba(231,76,60,0.2);
-  color: var(--accent-red);
-}
-.verify-status.success-msg {
-  background: rgba(46,204,113,0.1);
-  border: 1px solid rgba(46,204,113,0.2);
-  color: var(--accent-green);
-}
-
-/* ── Offer card ── */
-.offer-card {
-  background: linear-gradient(145deg, rgba(46,204,113,0.08), rgba(46,204,113,0.02));
-  border: 1px solid rgba(46,204,113,0.25);
-  border-radius: 14px;
-  padding: 18px;
-  text-align: center;
+/* ── CTA group after win ── */
+.win-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 14px;
 }
-.offer-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-.offer-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
 
-/* ── Trust row ── */
+.or-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2px 0;
+}
+.or-divider .line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+.or-divider span {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Trust badges ── */
 .trust-row {
-  display: flex; gap: 6px; margin-top: 14px; width: 100%;
+  display: flex; gap: 6px; margin-top: 16px; width: 100%;
   animation: fadeSlideUp 0.5s ease-out 0.3s both;
 }
 .trust-badge {
@@ -457,13 +308,13 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
   width: 28px; height: 28px;
   border-radius: 50%;
   background: rgba(212,168,67,0.1);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 13px;
 }
 .trust-badge .info strong { font-size: 10px; font-weight: 700; display: block; line-height: 1.2; }
 .trust-badge .info span { font-size: 9px; color: var(--text-muted); }
 
-/* ── Live counter ── */
+/* ── Players ── */
 .players-live {
   display: flex; align-items: center; gap: 6px;
   margin-top: 12px;
@@ -493,30 +344,24 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
   line-height: 1.5;
 }
 
-/* ── Phase visibility ── */
+/* ── Phases ── */
 .phase { display: none; width: 100%; }
 .phase.active { display: flex; flex-direction: column; align-items: center; }
 
-/* ── Canvas ── */
 #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 100; }
 
 /* ── Animations ── */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.7); }
-}
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
 @keyframes ring-rotate { to { transform: rotate(360deg); } }
 @keyframes shimmer { 0% { left: -100%; } 100% { left: 200%; } }
 @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeScale { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
-@keyframes spin-loader { to { transform: rotate(360deg); } }
-.spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin-loader 0.7s linear infinite; }
 
 @media (max-width: 360px) {
-  .wheel-section { width: 250px; height: 250px; }
+  .wheel-section { width: 260px; height: 260px; }
   .headline h1 { font-size: 21px; }
-  .prize-amount { font-size: 32px; }
+  .prize-amount { font-size: 34px; }
 }
 </style>
 </head>
@@ -526,7 +371,6 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 
 <div class="container">
 
-  <!-- User greeting (TMA only - shows user's TG name) -->
   <div class="user-greeting" id="userGreeting">
     <div class="user-avatar" id="userAvatar">?</div>
     <span>Hallo, <strong id="userName">Spieler</strong></span>
@@ -542,30 +386,12 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
     <p>Bis zu <strong style="color:var(--gold-light)">CHF 500</strong> sichern</p>
   </div>
 
-  <!-- Stepper -->
-  <div class="stepper">
-    <div class="step-item active" id="step1">
-      <div class="step-circle" id="sc1">1</div>
-      <div class="step-label">Drehen</div>
-    </div>
-    <div class="step-line" id="line1"><div class="fill"></div></div>
-    <div class="step-item" id="step2">
-      <div class="step-circle" id="sc2">2</div>
-      <div class="step-label">Beitreten</div>
-    </div>
-    <div class="step-line" id="line2"><div class="fill"></div></div>
-    <div class="step-item" id="step3">
-      <div class="step-circle" id="sc3">3</div>
-      <div class="step-label">Einlösen</div>
-    </div>
-  </div>
-
   <!-- ═══ PHASE 1: SPIN ═══ -->
   <div class="phase active" id="phase-spin">
     <div class="wheel-section">
       <div class="wheel-outer-ring"><div class="wheel-outer-ring-inner"></div></div>
       <div class="wheel-container">
-        <canvas id="wheelCanvas" width="560" height="560"></canvas>
+        <canvas id="wheelCanvas" width="580" height="580"></canvas>
       </div>
       <div class="wheel-pointer"></div>
       <div class="wheel-center-btn" id="spinBtn" onclick="spinWheel()">
@@ -580,61 +406,35 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
     <div class="cta-note">100% kostenlos · Kein Einsatz</div>
   </div>
 
-  <!-- ═══ PHASE 2: GATE ═══ -->
-  <div class="phase" id="phase-gate">
+  <!-- ═══ PHASE 2: WIN ═══ -->
+  <div class="phase" id="phase-win">
     <div class="prize-card">
-      <div class="prize-label">🎉 Gewonnen!</div>
+      <div class="prize-label">🎉 Du hast gewonnen!</div>
       <div class="prize-amount">CHF <span id="prizeValue">200</span></div>
-      <div class="prize-subtitle" id="countdownText">Reserviert — 15:00</div>
+      <div class="prize-subtitle">Jetzt registrieren & Bonus erhalten</div>
     </div>
 
-    <div class="gate-card">
-      <div class="gate-card-header">
-        <div class="gate-tg-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        </div>
-        <div class="info">
-          <h3>VIP Bonus-Gruppe</h3>
-          <p>Beitreten um Bonus freizuschalten</p>
-        </div>
-      </div>
-
-      <div class="gate-perks">
-        <div class="perk-chip"><span class="emoji">🎰</span> Freispiele</div>
-        <div class="perk-chip"><span class="emoji">💰</span> Bonus-Codes</div>
-        <div class="perk-chip"><span class="emoji">⚡</span> VIP-Tipps</div>
-      </div>
-
-      <div class="gate-actions">
-        <a class="cta-btn telegram" id="joinGroupBtn" href="#" target="_blank" onclick="onJoinClicked()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          Gruppe beitreten
-          <span class="shimmer"></span>
-        </a>
-        <button class="cta-btn verify" id="verifyBtn" style="display:none;" onclick="verifyMembership()">
-          ✓ Mitgliedschaft prüfen
-        </button>
-        <div class="verify-status" id="verifyStatus"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══ PHASE 3: OFFER ═══ -->
-  <div class="phase" id="phase-offer">
-    <div class="prize-card">
-      <div class="prize-label">🎉 Gewonnen!</div>
-      <div class="prize-amount">CHF <span id="prizeValueFinal">200</span></div>
-      <div class="prize-subtitle">✅ Freigeschaltet!</div>
-    </div>
-    <div class="offer-card">
-      <div style="font-size:26px; margin-bottom:6px;">🔓</div>
-      <h3>Bonus ist bereit!</h3>
-      <p>Registriere dich & dein CHF <span id="prizeValueOffer">200</span> Bonus wird sofort gutgeschrieben.</p>
-      <a class="cta-btn success" id="finalOfferBtn" href="#" target="_blank">
-        ⚡ Bonus einlösen — CHF <span id="prizeValueCta">200</span>
+    <div class="win-actions">
+      <!-- PRIMARY: Offer link -->
+      <a class="cta-btn offer" id="offerBtn" href="#" target="_blank">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Bonus einlösen — CHF <span id="prizeValueCta">200</span>
         <span class="shimmer"></span>
       </a>
-      <div class="cta-note" style="margin-top:8px;">Sofort · Auszahlung in CHF</div>
+      <div class="cta-note">Sofortige Gutschrift · Auszahlung in CHF</div>
+
+      <!-- Divider -->
+      <div class="or-divider">
+        <div class="line"></div>
+        <span>oder</span>
+        <div class="line"></div>
+      </div>
+
+      <!-- SECONDARY: Channel join -->
+      <a class="cta-btn secondary" id="channelBtn" href="#">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        📢 VIP-Gruppe beitreten — Tägliche Bonuscodes
+      </a>
     </div>
   </div>
 
@@ -669,26 +469,13 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 //  CONFIG
 // ═══════════════════════════════════════════════════════════════
 const CONFIG = {
-  // ── Telegram Group ──
-  telegramGroupLink: 'https://t.me/swissbonus',
-  // Numeric chat ID for API verification (e.g., -1001234567890)
-  groupChatId: '-1003659784230',
-
-  // ── Backend verification endpoint (Cloudflare Worker) ──
-  // Your CF Worker checks TG Bot API: getChatMember
-  // Expects: GET /verify?user_id=123456&chat_id=-100XXX
-  // Returns: { "ok": true, "member": true/false }
-  verifyEndpoint: 'https://your-worker.your-subdomain.workers.dev/verify',
-
-  // ── Verification mode ──
-  // 'tma_api' = Use TG user ID from Mini App SDK + your CF Worker (BEST)
-  // 'manual'  = Fake gate with deliberate first-fail (NO backend needed)
-  verifyMode: 'manual',
-
-  // ── Final offer ──
+  // ── Your casino offer registration link ──
   offerLink: 'https://YOUR_OFFER_DOMAIN.com/register',
 
-  // ── Tracking (auto-populated from URL params) ──
+  // ── Your Telegram channel ──
+  channelLink: 'https://t.me/swissbonus',
+
+  // ── Tracking ──
   clickId: new URLSearchParams(window.location.search).get('clickid') || '',
   zoneId: new URLSearchParams(window.location.search).get('zoneid') || '',
 
@@ -707,77 +494,38 @@ const CONFIG = {
 };
 
 // ═══════════════════════════════════════
-//  TELEGRAM MINI APP INIT
+//  TELEGRAM MINI APP
 // ═══════════════════════════════════════
 const tg = window.Telegram?.WebApp;
 let tgUser = null;
 
 if (tg) {
-  // Tell Telegram the app is ready
   tg.ready();
-
-  // Expand to full height
   tg.expand();
-
-  // Request fullscreen if available (TG 8.x+)
-  if (tg.requestFullscreen) {
-    try { tg.requestFullscreen(); } catch(e) {}
-  }
-
-  // Disable vertical swipe to close (keeps user in app)
-  if (tg.disableVerticalSwipes) {
-    tg.disableVerticalSwipes();
-  }
-
-  // Set header color to match our dark theme
+  if (tg.requestFullscreen) try { tg.requestFullscreen(); } catch(e) {}
+  if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
   tg.setHeaderColor('#0A0B12');
   tg.setBackgroundColor('#0A0B12');
 
-  // Get user data
   if (tg.initDataUnsafe?.user) {
     tgUser = tg.initDataUnsafe.user;
-    const greeting = document.getElementById('userGreeting');
-    const avatar = document.getElementById('userAvatar');
-    const name = document.getElementById('userName');
+    document.getElementById('userName').textContent = tgUser.first_name || 'Spieler';
+    document.getElementById('userAvatar').textContent = (tgUser.first_name || 'S').charAt(0).toUpperCase();
+    document.getElementById('userGreeting').classList.add('visible');
+  }
 
-    const displayName = tgUser.first_name || 'Spieler';
-    name.textContent = displayName;
-    avatar.textContent = displayName.charAt(0).toUpperCase();
-    greeting.classList.add('visible');
-
-    console.log('[TMA] User:', tgUser.id, displayName, 'Premium:', tgUser.is_premium);
+  // Also read clickId from TMA start_param
+  if (!CONFIG.clickId && tg.initDataUnsafe?.start_param) {
+    CONFIG.clickId = tg.initDataUnsafe.start_param;
   }
 }
 
-// Native haptic helper
 function haptic(type) {
-  if (tg?.HapticFeedback) {
-    if (type === 'light') tg.HapticFeedback.impactOccurred('light');
-    else if (type === 'medium') tg.HapticFeedback.impactOccurred('medium');
-    else if (type === 'heavy') tg.HapticFeedback.impactOccurred('heavy');
-    else if (type === 'success') tg.HapticFeedback.notificationOccurred('success');
-    else if (type === 'error') tg.HapticFeedback.notificationOccurred('error');
-  }
+  if (!tg?.HapticFeedback) return;
+  if (type === 'medium') tg.HapticFeedback.impactOccurred('medium');
+  else if (type === 'success') tg.HapticFeedback.notificationOccurred('success');
+  else if (type === 'light') tg.HapticFeedback.impactOccurred('light');
 }
-
-// Open link inside Telegram (uses TG's openTelegramLink for internal links)
-function openTgLink(url) {
-  if (tg?.openTelegramLink && url.includes('t.me/')) {
-    tg.openTelegramLink(url);
-  } else if (tg?.openLink) {
-    tg.openLink(url);
-  } else {
-    window.open(url, '_blank');
-  }
-}
-
-// ═══════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════
-let isSpinning = false;
-let currentRotation = 0;
-let wonPrize = null;
-let verifyAttempts = 0;
 
 // ═══════════════════════════════════════
 //  WHEEL
@@ -786,29 +534,29 @@ const canvas = document.getElementById('wheelCanvas');
 const ctx = canvas.getContext('2d');
 const segs = CONFIG.segments;
 const arcSize = (2 * Math.PI) / segs.length;
+let isSpinning = false;
+let currentRotation = 0;
+let wonPrize = null;
 
 function drawWheel(rot = 0) {
   const cx = canvas.width / 2, cy = canvas.height / 2, r = cx - 4;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.rotate(rot);
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot);
   for (let i = 0; i < segs.length; i++) {
     const sa = i * arcSize, ea = sa + arcSize;
     ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, r, sa, ea); ctx.closePath();
     ctx.fillStyle = segs[i].color; ctx.fill();
     ctx.strokeStyle = 'rgba(212,168,67,0.15)'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.save();
-    ctx.rotate(sa + arcSize / 2);
-    ctx.font = '700 22px "Space Mono", monospace';
+    ctx.save(); ctx.rotate(sa + arcSize / 2);
+    ctx.font = '700 24px "Space Mono", monospace';
     ctx.fillStyle = '#D4A843'; ctx.textAlign = 'center';
     ctx.fillText(segs[i].label, r * 0.58, -4);
-    ctx.font = '600 10px "Outfit", sans-serif';
+    ctx.font = '600 11px "Outfit", sans-serif';
     ctx.fillStyle = 'rgba(212,168,67,0.55)';
-    ctx.fillText('CHF', r * 0.58, 12);
+    ctx.fillText('CHF', r * 0.58, 13);
     ctx.restore();
   }
-  ctx.beginPath(); ctx.arc(0, 0, 40, 0, 2 * Math.PI);
+  ctx.beginPath(); ctx.arc(0, 0, 42, 0, 2 * Math.PI);
   ctx.fillStyle = 'rgba(10,11,18,0.8)'; ctx.fill();
   ctx.restore();
 }
@@ -841,157 +589,56 @@ function spinWheel() {
     currentRotation = startRot + delta * (1 - Math.pow(1 - p, 4));
     drawWheel(currentRotation);
     if (p < 1) requestAnimationFrame(anim);
-    else onSpinDone();
+    else onWin();
   }
   requestAnimationFrame(anim);
 }
 
-function onSpinDone() {
+function onWin() {
   haptic('success');
-  setStep(2);
+
+  // Set prize values
   document.getElementById('prizeValue').textContent = wonPrize.value;
-  showPhase('phase-gate');
-  document.getElementById('joinGroupBtn').href = CONFIG.telegramGroupLink;
-  // Override click to use TG native link opener
-  document.getElementById('joinGroupBtn').onclick = function(e) {
-    e.preventDefault();
-    onJoinClicked();
-    openTgLink(CONFIG.telegramGroupLink);
-  };
-  startCountdown();
-  launchConfetti();
-}
+  document.getElementById('prizeValueCta').textContent = wonPrize.value;
 
-// ═══════════════════════════════════════
-//  PHASES
-// ═══════════════════════════════════════
-function showPhase(id) {
-  document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-  const el = document.getElementById(id);
-  el.classList.add('active');
-  el.style.animation = 'fadeScale 0.5s ease-out';
-}
-
-function setStep(n) {
-  for (let i = 1; i <= 3; i++) {
-    const el = document.getElementById('step' + i);
-    const sc = document.getElementById('sc' + i);
-    el.classList.remove('active', 'completed');
-    if (i < n) { el.classList.add('completed'); sc.textContent = '✓'; }
-    if (i === n) el.classList.add('active');
-  }
-  if (n >= 2) document.getElementById('line1').classList.add('filled');
-  if (n >= 3) document.getElementById('line2').classList.add('filled');
-}
-
-// ═══════════════════════════════════════
-//  COUNTDOWN
-// ═══════════════════════════════════════
-let cdInterval;
-function startCountdown() {
-  let sec = 900;
-  const el = document.getElementById('countdownText');
-  cdInterval = setInterval(() => {
-    sec--;
-    if (sec <= 0) { clearInterval(cdInterval); el.textContent = 'Abgelaufen!'; el.style.color = 'var(--accent-red)'; return; }
-    const m = Math.floor(sec / 60), s = sec % 60;
-    el.textContent = `Reserviert — ${m}:${s.toString().padStart(2, '0')}`;
-  }, 1000);
-}
-
-// ═══════════════════════════════════════
-//  JOIN + VERIFY GATE
-// ═══════════════════════════════════════
-function onJoinClicked() {
-  setTimeout(() => {
-    const btn = document.getElementById('verifyBtn');
-    btn.style.display = 'flex';
-    btn.style.animation = 'fadeSlideUp 0.4s ease-out';
-  }, 1500);
-}
-
-async function verifyMembership() {
-  const btn = document.getElementById('verifyBtn');
-  const status = document.getElementById('verifyStatus');
-  verifyAttempts++;
-  haptic('light');
-
-  btn.classList.add('checking');
-  btn.innerHTML = '<span class="spinner"></span> Prüfe...';
-  status.className = 'verify-status'; status.style.display = 'none';
-
-  if (CONFIG.verifyMode === 'tma_api' && tgUser) {
-    // ═══ REAL CHECK via CF Worker + TG Bot API ═══
-    try {
-      const res = await fetch(
-        `${CONFIG.verifyEndpoint}?user_id=${tgUser.id}&chat_id=${CONFIG.groupChatId}`
-      );
-      const data = await res.json();
-
-      if (data.ok && data.member) {
-        onVerifySuccess();
-      } else {
-        onVerifyFail();
-      }
-    } catch (e) {
-      console.error('[Verify] API error:', e);
-      // Fallback: pass after 2 attempts
-      if (verifyAttempts >= 2) onVerifySuccess();
-      else onVerifyFail();
-    }
-
-  } else {
-    // ═══ MANUAL MODE ═══
-    await new Promise(r => setTimeout(r, 1800));
-    if (verifyAttempts < 2) onVerifyFail();
-    else onVerifySuccess();
-  }
-}
-
-function onVerifyFail() {
-  haptic('error');
-  const btn = document.getElementById('verifyBtn');
-  const status = document.getElementById('verifyStatus');
-  btn.classList.remove('checking');
-  btn.innerHTML = '✓ Erneut prüfen';
-  status.className = 'verify-status error show';
-  status.textContent = '⚠️ Nicht erkannt — bitte zuerst beitreten!';
-}
-
-function onVerifySuccess() {
-  haptic('success');
-  const status = document.getElementById('verifyStatus');
-  status.className = 'verify-status success-msg show';
-  status.textContent = '✅ Bestätigt!';
-  setStep(3);
-
-  // Build offer URL with all tracking params
+  // Build offer URL with tracking
   let url = CONFIG.offerLink;
   const p = [];
   if (CONFIG.clickId) p.push('clickid=' + CONFIG.clickId);
   if (CONFIG.zoneId) p.push('zoneid=' + CONFIG.zoneId);
-  if (wonPrize) p.push('bonus=' + wonPrize.value);
+  p.push('bonus=' + wonPrize.value);
   if (tgUser) p.push('tg_id=' + tgUser.id);
   if (p.length) url += (url.includes('?') ? '&' : '?') + p.join('&');
 
-  document.getElementById('prizeValueFinal').textContent = wonPrize.value;
-  document.getElementById('prizeValueOffer').textContent = wonPrize.value;
-  document.getElementById('prizeValueCta').textContent = wonPrize.value;
-
-  const offerBtn = document.getElementById('finalOfferBtn');
+  // Set offer button
+  const offerBtn = document.getElementById('offerBtn');
   offerBtn.href = url;
   offerBtn.onclick = function(e) {
     e.preventDefault();
-    // Open in external browser for registration
+    haptic('light');
     if (tg?.openLink) tg.openLink(url);
     else window.open(url, '_blank');
   };
 
-  setTimeout(() => {
-    showPhase('phase-offer');
-    clearInterval(cdInterval);
-    launchConfetti();
-  }, 1000);
+  // Set channel button
+  const channelBtn = document.getElementById('channelBtn');
+  channelBtn.href = CONFIG.channelLink;
+  channelBtn.onclick = function(e) {
+    e.preventDefault();
+    haptic('light');
+    if (tg?.openTelegramLink) tg.openTelegramLink(CONFIG.channelLink);
+    else window.open(CONFIG.channelLink, '_blank');
+  };
+
+  // Show win phase
+  document.getElementById('phase-spin').classList.remove('active');
+  document.getElementById('phase-spin').style.display = 'none';
+  const winPhase = document.getElementById('phase-win');
+  winPhase.classList.add('active');
+  winPhase.style.animation = 'fadeScale 0.5s ease-out';
+
+  // Confetti
+  launchConfetti();
 }
 
 // ═══════════════════════════════════════
@@ -1003,13 +650,13 @@ function launchConfetti() {
   c.width = window.innerWidth; c.height = window.innerHeight;
   const cols = ['#D4A843','#F2D477','#2ECC71','#E74C3C','#3498DB','#fff'];
   const ps = [];
-  for (let i = 0; i < 90; i++) ps.push({
-    x: c.width/2+(Math.random()-.5)*180, y: c.height/2,
-    w: Math.random()*7+3, h: Math.random()*4+2,
+  for (let i = 0; i < 100; i++) ps.push({
+    x: c.width/2+(Math.random()-.5)*200, y: c.height*0.4,
+    w: Math.random()*8+3, h: Math.random()*4+2,
     color: cols[Math.floor(Math.random()*cols.length)],
-    vx: (Math.random()-.5)*14, vy: -(Math.random()*12+4),
-    rot: Math.random()*360, rs: (Math.random()-.5)*10,
-    g: .25+Math.random()*.1, o: 1, d: .006+Math.random()*.008,
+    vx: (Math.random()-.5)*16, vy: -(Math.random()*14+4),
+    rot: Math.random()*360, rs: (Math.random()-.5)*12,
+    g: .25+Math.random()*.1, o: 1, d: .005+Math.random()*.008,
   });
   (function draw() {
     cx2.clearRect(0,0,c.width,c.height);
