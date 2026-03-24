@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Glücksrad Bonus</title>
+<title>Freispiele Bonus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -20,15 +20,13 @@
   --accent-green: #2ECC71;
   --accent-red: #E74C3C;
   --accent-blue: #2AABEE;
+  --accent-purple: #9B59B6;
   --text-primary: #F0EDE6;
   --text-muted: #8A8B9E;
   --glow-gold: rgba(212, 168, 67, 0.35);
 }
 
-html {
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-
+html { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
 html, body {
   background: var(--bg-deep);
   color: var(--text-primary);
@@ -41,44 +39,36 @@ html, body {
 
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background:
     radial-gradient(ellipse 600px 400px at 50% 15%, rgba(212,168,67,0.08), transparent),
     radial-gradient(ellipse 400px 600px at 80% 70%, rgba(46,204,113,0.04), transparent);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
 .container {
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
   max-width: 420px;
   margin: 0 auto;
   padding: 12px 16px 32px;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center;
 }
 
 /* ── User greeting ── */
 .user-greeting {
   display: none;
-  align-items: center;
-  gap: 8px;
+  align-items: center; gap: 8px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 100px;
   padding: 5px 14px 5px 5px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   animation: fadeSlideDown 0.5s ease-out;
 }
 .user-greeting.visible { display: inline-flex; }
 .user-avatar {
-  width: 26px; height: 26px;
-  border-radius: 50%;
+  width: 26px; height: 26px; border-radius: 50%;
   background: linear-gradient(135deg, var(--gold-dark), var(--gold));
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 700; color: var(--bg-deep);
@@ -88,59 +78,40 @@ body::before {
 
 /* ── Top badge ── */
 .top-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  display: inline-flex; align-items: center; gap: 6px;
   background: linear-gradient(135deg, rgba(212,168,67,0.15), rgba(212,168,67,0.05));
   border: 1px solid rgba(212,168,67,0.25);
   border-radius: 100px;
   padding: 5px 14px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--gold-light);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   animation: fadeSlideDown 0.5s ease-out 0.05s both;
 }
-.top-badge .dot {
-  width: 6px; height: 6px;
-  background: var(--accent-green);
-  border-radius: 50%;
-  animation: pulse-dot 2s infinite;
-}
+.top-badge .dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; animation: pulse-dot 2s infinite; }
 
 /* ── Headline ── */
 .headline {
-  text-align: center;
-  margin-bottom: 4px;
+  text-align: center; margin-bottom: 2px;
   animation: fadeSlideDown 0.5s ease-out 0.1s both;
 }
 .headline h1 {
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.15;
+  font-size: 23px; font-weight: 800; line-height: 1.15;
   background: linear-gradient(160deg, var(--text-primary) 30%, var(--gold-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.headline p {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
+.headline p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
 /* ── Wheel ── */
 .wheel-section {
   position: relative;
-  width: 290px; height: 290px;
-  margin: 14px auto 14px;
+  width: 280px; height: 280px;
+  margin: 12px auto 10px;
   animation: fadeScale 0.6s ease-out 0.2s both;
 }
 .wheel-outer-ring {
-  position: absolute; inset: -6px;
-  border-radius: 50%;
+  position: absolute; inset: -6px; border-radius: 50%;
   background: conic-gradient(from 0deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
   padding: 3px;
   animation: ring-rotate 20s linear infinite;
@@ -150,11 +121,9 @@ body::before {
 canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 
 .wheel-center-btn {
-  position: absolute;
-  top: 50%; left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 72px; height: 72px;
-  border-radius: 50%;
+  width: 72px; height: 72px; border-radius: 50%;
   border: 3px solid var(--gold);
   background: radial-gradient(circle at 40% 35%, #1f2035, var(--bg-deep));
   display: flex; align-items: center; justify-content: center;
@@ -166,11 +135,9 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 .wheel-center-btn:active { transform: translate(-50%, -50%) scale(0.94); }
 .wheel-center-btn span {
   font-family: 'Space Mono', monospace;
-  font-weight: 700; font-size: 11px;
-  color: var(--gold-light);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: center; line-height: 1.3;
+  font-weight: 700; font-size: 10px;
+  color: var(--gold-light); text-transform: uppercase;
+  letter-spacing: 0.05em; text-align: center; line-height: 1.3;
 }
 .wheel-center-btn.disabled { opacity: 0.5; pointer-events: none; }
 
@@ -178,8 +145,7 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
   position: absolute; top: -5px; left: 50%;
   transform: translateX(-50%); z-index: 12;
   width: 0; height: 0;
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
+  border-left: 13px solid transparent; border-right: 13px solid transparent;
   border-top: 26px solid var(--gold);
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
 }
@@ -189,34 +155,104 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
   background: linear-gradient(145deg, rgba(212,168,67,0.12), rgba(212,168,67,0.03));
   border: 1px solid rgba(212,168,67,0.3);
   border-radius: 14px;
-  padding: 18px;
-  text-align: center;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
+  padding: 16px; text-align: center; width: 100%;
+  position: relative; overflow: hidden;
 }
 .prize-card::before {
-  content: '';
-  position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: radial-gradient(circle at 50% 0%, rgba(212,168,67,0.1), transparent 70%);
   pointer-events: none;
 }
 .prize-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); font-weight: 600; }
 .prize-amount {
   font-family: 'Space Mono', monospace;
-  font-size: 42px; font-weight: 700;
+  font-size: 40px; font-weight: 700;
   color: var(--gold-light);
-  text-shadow: 0 0 30px var(--glow-gold);
+  text-shadow: 0 0 25px var(--glow-gold);
   line-height: 1.1;
 }
+.prize-amount-sub { font-size: 16px; font-weight: 700; color: var(--gold); margin-top: 2px; }
 .prize-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-/* ── CTA Buttons ── */
+/* ── Offer tiers ── */
+.offers-stack {
+  display: flex; flex-direction: column; gap: 10px;
+  width: 100%; margin-top: 14px;
+}
+
+.offer-tier {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.offer-tier.primary {
+  border-color: rgba(46,204,113,0.3);
+  background: linear-gradient(145deg, rgba(46,204,113,0.06), var(--bg-card));
+}
+.offer-tier.secondary {
+  border-color: rgba(155,89,182,0.2);
+  background: linear-gradient(145deg, rgba(155,89,182,0.04), var(--bg-card));
+}
+
+.offer-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.offer-tier.primary .offer-tier-badge {
+  background: rgba(46,204,113,0.15);
+  color: var(--accent-green);
+}
+.offer-tier.secondary .offer-tier-badge {
+  background: rgba(155,89,182,0.15);
+  color: var(--accent-purple);
+}
+
+.offer-tier-headline {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.offer-tier.primary .offer-tier-headline { color: var(--accent-green); }
+.offer-tier.secondary .offer-tier-headline { color: var(--accent-purple); }
+
+.offer-tier-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.offer-tier-detail strong { color: var(--text-primary); }
+
+.offer-tier-perks {
+  display: flex; gap: 6px; margin-bottom: 12px;
+}
+.perk-chip {
+  display: flex; align-items: center; gap: 3px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  font-size: 10px; font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ── Buttons ── */
 .cta-btn {
   display: flex; align-items: center; justify-content: center;
   gap: 8px; width: 100%;
-  padding: 15px 20px;
-  border: none; border-radius: 12px;
+  padding: 14px 20px; border: none; border-radius: 12px;
   font-family: 'Outfit', sans-serif;
   font-size: 15px; font-weight: 700;
   cursor: pointer; transition: all 0.2s;
@@ -226,87 +262,119 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 }
 .cta-btn svg { flex-shrink: 0; }
 
-.cta-btn.primary {
+.cta-btn.primary-spin {
   background: linear-gradient(135deg, var(--gold), var(--gold-dark));
   color: var(--bg-deep);
   box-shadow: 0 4px 20px var(--glow-gold);
 }
-.cta-btn.primary:active { transform: scale(0.97); }
+.cta-btn.primary-spin:active { transform: scale(0.97); }
 
-/* Big green offer button */
-.cta-btn.offer {
+.cta-btn.offer-green {
   background: linear-gradient(135deg, var(--accent-green), #27ae60);
   color: #fff;
-  box-shadow: 0 4px 20px rgba(46,204,113,0.35);
-  font-size: 16px;
-  padding: 17px 24px;
+  box-shadow: 0 4px 16px rgba(46,204,113,0.35);
+  font-size: 14px;
 }
-.cta-btn.offer:active { transform: scale(0.97); }
+.cta-btn.offer-green:active { transform: scale(0.97); }
 
-/* Smaller secondary channel button */
-.cta-btn.secondary {
+.cta-btn.offer-purple {
+  background: linear-gradient(135deg, var(--accent-purple), #8e44ad);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(155,89,182,0.3);
+  font-size: 14px;
+}
+.cta-btn.offer-purple:active { transform: scale(0.97); }
+
+.cta-btn.channel-secondary {
   background: var(--bg-surface);
   border: 1px solid rgba(42,171,238,0.2);
   color: var(--accent-blue);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 12px 20px;
+  font-size: 12px; font-weight: 600;
+  padding: 11px 16px;
 }
-.cta-btn.secondary:active { transform: scale(0.97); }
+.cta-btn.channel-secondary:active { transform: scale(0.97); }
 
 .cta-btn .shimmer {
-  position: absolute;
-  top: 0; left: -100%;
+  position: absolute; top: 0; left: -100%;
   width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
   animation: shimmer 3s infinite;
 }
-.cta-note { text-align: center; font-size: 10px; color: var(--text-muted); margin-top: 5px; }
+.cta-note { text-align: center; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
 
-/* ── CTA group after win ── */
-.win-actions {
+/* ── Dividers ── */
+.or-divider {
+  display: flex; align-items: center; gap: 12px; margin: 4px 0; width: 100%;
+}
+.or-divider .line { flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.or-divider span { font-size: 10px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── Collapsible extras ── */
+.extras-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed rgba(255,255,255,0.08);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s;
+}
+.extras-toggle:hover, .extras-toggle:active {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.12);
+}
+.extras-toggle span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.extras-toggle .arrow {
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: transform 0.3s;
+  display: inline-block;
+}
+.extras-toggle.open .arrow {
+  transform: rotate(180deg);
+}
+
+.extras-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+  width: 100%;
+}
+.extras-content.open {
+  max-height: 600px;
+  opacity: 1;
+}
+.extras-inner {
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
-  margin-top: 14px;
 }
 
-.or-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 2px 0;
-}
-.or-divider .line {
-  flex: 1;
-  height: 1px;
-  background: rgba(255,255,255,0.06);
-}
-.or-divider span {
-  font-size: 10px;
-  color: var(--text-muted);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-/* ── Trust badges ── */
+/* ── Trust ── */
 .trust-row {
-  display: flex; gap: 6px; margin-top: 16px; width: 100%;
+  display: flex; gap: 6px; margin-top: 14px; width: 100%;
   animation: fadeSlideUp 0.5s ease-out 0.3s both;
 }
 .trust-badge {
-  flex: 1;
-  display: flex; align-items: center; gap: 6px;
+  flex: 1; display: flex; align-items: center; gap: 6px;
   background: var(--bg-card);
   border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 8px; padding: 8px;
 }
 .trust-badge .ic {
-  width: 28px; height: 28px;
-  border-radius: 50%;
+  width: 28px; height: 28px; border-radius: 50%;
   background: rgba(212,168,67,0.1);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; font-size: 13px;
@@ -314,43 +382,27 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 .trust-badge .info strong { font-size: 10px; font-weight: 700; display: block; line-height: 1.2; }
 .trust-badge .info span { font-size: 9px; color: var(--text-muted); }
 
-/* ── Players ── */
 .players-live {
   display: flex; align-items: center; gap: 6px;
-  margin-top: 12px;
-  padding: 6px 14px;
+  margin-top: 12px; padding: 6px 14px;
   border-radius: 100px;
   background: rgba(46,204,113,0.08);
   border: 1px solid rgba(46,204,113,0.12);
-  font-size: 11px;
-  color: var(--accent-green);
-  font-weight: 500;
+  font-size: 11px; color: var(--accent-green); font-weight: 500;
   animation: fadeSlideUp 0.5s ease-out 0.4s both;
 }
-.players-live .live-dot {
-  width: 6px; height: 6px;
-  background: var(--accent-green);
-  border-radius: 50%;
-  animation: pulse-dot 1.5s infinite;
-}
+.players-live .live-dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; animation: pulse-dot 1.5s infinite; }
 
 .footer {
-  margin-top: auto;
-  padding-top: 16px;
-  text-align: center;
-  font-size: 9px;
-  color: var(--text-muted);
-  opacity: 0.4;
-  line-height: 1.5;
+  margin-top: auto; padding-top: 16px;
+  text-align: center; font-size: 9px;
+  color: var(--text-muted); opacity: 0.4; line-height: 1.5;
 }
 
-/* ── Phases ── */
 .phase { display: none; width: 100%; }
 .phase.active { display: flex; flex-direction: column; align-items: center; }
-
 #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 100; }
 
-/* ── Animations ── */
 @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
 @keyframes ring-rotate { to { transform: rotate(360deg); } }
 @keyframes shimmer { 0% { left: -100%; } 100% { left: 200%; } }
@@ -359,8 +411,8 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 @keyframes fadeScale { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
 
 @media (max-width: 360px) {
-  .wheel-section { width: 260px; height: 260px; }
-  .headline h1 { font-size: 21px; }
+  .wheel-section { width: 250px; height: 250px; }
+  .headline h1 { font-size: 20px; }
   .prize-amount { font-size: 34px; }
 }
 </style>
@@ -378,12 +430,12 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 
   <div class="top-badge">
     <span class="dot"></span>
-    Exklusiv — Nur heute
+    🎁 Freispiele-Airdrop — Limitiert
   </div>
 
   <div class="headline">
-    <h1>Drehe & gewinne<br>deinen Bonus!</h1>
-    <p>Bis zu <strong style="color:var(--gold-light)">CHF 500</strong> sichern</p>
+    <h1>Drehe & sichere dir<br>deinen Freispiele-Drop!</h1>
+    <p>Wir verschenken <strong style="color:var(--gold-light)">250 Freispiele</strong> — sei schnell!</p>
   </div>
 
   <!-- ═══ PHASE 1: SPIN ═══ -->
@@ -398,43 +450,84 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
         <span>DREH<br>MICH</span>
       </div>
     </div>
-    <button class="cta-btn primary" onclick="spinWheel()" style="margin-top:6px;">
+    <button class="cta-btn primary-spin" onclick="spinWheel()" style="margin-top:6px;">
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Jetzt drehen — Gratis!
+      Airdrop starten — Gratis!
       <span class="shimmer"></span>
     </button>
-    <div class="cta-note">100% kostenlos · Kein Einsatz</div>
+    <div class="cta-note">Komplett kostenlos · Kein Haken</div>
   </div>
 
   <!-- ═══ PHASE 2: WIN ═══ -->
   <div class="phase" id="phase-win">
+
+    <!-- Prize display -->
     <div class="prize-card">
-      <div class="prize-label">🎉 Du hast gewonnen!</div>
-      <div class="prize-amount">CHF <span id="prizeValue">200</span></div>
-      <div class="prize-subtitle">Jetzt registrieren & Bonus erhalten</div>
+      <div class="prize-label">🎁 Dein Airdrop ist da!</div>
+      <div class="prize-amount"><span id="prizeValue">250</span></div>
+      <div class="prize-amount-sub">Freispiele</div>
+      <div class="prize-subtitle">Werden dir täglich gutgeschrieben — 5 Tage lang!</div>
     </div>
 
-    <div class="win-actions">
-      <!-- PRIMARY: Offer link -->
-      <a class="cta-btn offer" id="offerBtn" href="#" target="_blank">
-        <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Bonus einlösen — CHF <span id="prizeValueCta">200</span>
-        <span class="shimmer"></span>
-      </a>
-      <div class="cta-note">Sofortige Gutschrift · Auszahlung in CHF</div>
+    <!-- Two offer tiers -->
+    <div class="offers-stack">
 
-      <!-- Divider -->
-      <div class="or-divider">
-        <div class="line"></div>
-        <span>oder</span>
-        <div class="line"></div>
+      <!-- TIER 1: No deposit (primary - the airdrop) -->
+      <div class="offer-tier primary">
+        <div class="offer-tier-badge">🎁 Dein Gratis-Airdrop</div>
+        <div class="offer-tier-headline">250 Freispiele geschenkt</div>
+        <div class="offer-tier-detail">
+          Einfach Account erstellen — du erhältst <strong>50 Freispiele pro Tag</strong>, 5 Tage lang. Komplett gratis, kein Haken.
+        </div>
+        <div class="offer-tier-perks">
+          <div class="perk-chip">🎰 50/Tag</div>
+          <div class="perk-chip">📅 5 Tage</div>
+          <div class="perk-chip">✅ Gratis</div>
+        </div>
+        <a class="cta-btn offer-green" id="noDepositBtn" href="#">
+          Freispiele abholen →
+          <span class="shimmer"></span>
+        </a>
+        <div class="cta-note">Nur Account nötig · Sofort aktiv</div>
       </div>
 
-      <!-- SECONDARY: Channel join -->
-      <a class="cta-btn secondary" id="channelBtn" href="#">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-        📢 VIP-Gruppe beitreten — Tägliche Bonuscodes
-      </a>
+    </div>
+
+    <!-- Collapsible: VIP Boost + Channel -->
+    <div class="extras-toggle" id="extrasToggle" onclick="toggleExtras()">
+      <span>💎 Noch mehr Freispiele gefällig?</span>
+      <span class="arrow">▼</span>
+    </div>
+
+    <div class="extras-content" id="extrasContent">
+      <div class="extras-inner">
+
+        <!-- VIP Boost (deposit offer) -->
+        <div class="offer-tier secondary">
+          <div class="offer-tier-badge">💎 VIP-Boost</div>
+          <div class="offer-tier-headline">+200 FS + 100% Casino Bonus</div>
+          <div class="offer-tier-detail">
+            Bei erster Einzahlung (ab <strong>CHF 10</strong>) erhältst du sofort <strong>200 Extra-Freispiele</strong> + einen <strong>100% Casino Bonus</strong> — dein Guthaben wird verdoppelt.
+          </div>
+          <div class="offer-tier-perks">
+            <div class="perk-chip">🎰 +200 FS sofort</div>
+            <div class="perk-chip">💰 100% Bonus</div>
+            <div class="perk-chip">📥 Ab CHF 10</div>
+          </div>
+          <a class="cta-btn offer-purple" id="depositBtn" href="#">
+            VIP-Boost aktivieren →
+            <span class="shimmer"></span>
+          </a>
+          <div class="cta-note">Erste Einzahlung ab CHF 10 nötig</div>
+        </div>
+
+        <!-- VIP Channel -->
+        <a class="cta-btn channel-secondary" id="channelBtn" href="#">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          📢 VIP-Gruppe — Tägliche Gratis-Freispiele
+        </a>
+
+      </div>
     </div>
   </div>
 
@@ -460,7 +553,8 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
   </div>
 
   <div class="footer">
-    18+ · Glücksspiel kann süchtig machen · Verantwortungsvoll spielen
+    18+ · Glücksspiel kann süchtig machen · Verantwortungsvoll spielen<br>
+    Es gelten die AGB · Bonusbedingungen auf der Plattform
   </div>
 </div>
 
@@ -469,26 +563,27 @@ canvas#wheelCanvas { width: 100%; height: 100%; display: block; }
 //  CONFIG
 // ═══════════════════════════════════════════════════════════════
 const CONFIG = {
-  // ── Your casino offer registration link ──
-  offerLink: 'https://YOUR_OFFER_DOMAIN.com/register',
+  // Both offer buttons can go to the same registration URL
+  // or different URLs if the operator provides separate links
+  offerLinkNoDeposit: 'https://www.gomedia1000.com/redirect.aspx?pid=5353&bid=1522&lpid=19&clickid={subid}',
+  offerLinkDeposit: 'https://www.gomedia1000.com/redirect.aspx?pid=5353&bid=1522&lpid=19&clickid={subid}',
 
-  // ── Your Telegram channel ──
   channelLink: 'https://t.me/+3acHlCAROz4xMDI0',
 
-  // ── Tracking ──
   clickId: new URLSearchParams(window.location.search).get('clickid') || '',
   zoneId: new URLSearchParams(window.location.search).get('zoneid') || '',
 
-  // ── Wheel ──
+  // Wheel: spins for Free Spins
+  // Always lands on 250 FS (the real offer) but shows other values for excitement
   segments: [
-    { value: 50,  label: '50',  color: '#1A1B2E', weight: 5 },
-    { value: 100, label: '100', color: '#1E1F32', weight: 30 },
-    { value: 150, label: '150', color: '#1A1B2E', weight: 25 },
-    { value: 200, label: '200', color: '#1E1F32', weight: 20 },
-    { value: 250, label: '250', color: '#1A1B2E', weight: 10 },
-    { value: 500, label: '500', color: '#1E1F32', weight: 2 },
-    { value: 75,  label: '75',  color: '#1A1B2E', weight: 5 },
-    { value: 300, label: '300', color: '#1E1F32', weight: 3 },
+    { value: 50,  label: '50',  unit: 'FS', color: '#1A1B2E', weight: 3 },
+    { value: 250, label: '250', unit: 'FS', color: '#1E1F32', weight: 35 },
+    { value: 100, label: '100', unit: 'FS', color: '#1A1B2E', weight: 5 },
+    { value: 150, label: '150', unit: 'FS', color: '#1E1F32', weight: 5 },
+    { value: 250, label: '250', unit: 'FS', color: '#1A1B2E', weight: 35 },
+    { value: 200, label: '200', unit: 'FS', color: '#1E1F32', weight: 5 },
+    { value: 75,  label: '75',  unit: 'FS', color: '#1A1B2E', weight: 2 },
+    { value: 250, label: '250', unit: 'FS', color: '#1E1F32', weight: 35 },
   ],
   spinDuration: 4500,
 };
@@ -500,8 +595,7 @@ const tg = window.Telegram?.WebApp;
 let tgUser = null;
 
 if (tg) {
-  tg.ready();
-  tg.expand();
+  tg.ready(); tg.expand();
   if (tg.requestFullscreen) try { tg.requestFullscreen(); } catch(e) {}
   if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
   tg.setHeaderColor('#0A0B12');
@@ -513,8 +607,6 @@ if (tg) {
     document.getElementById('userAvatar').textContent = (tgUser.first_name || 'S').charAt(0).toUpperCase();
     document.getElementById('userGreeting').classList.add('visible');
   }
-
-  // Also read clickId from TMA start_param
   if (!CONFIG.clickId && tg.initDataUnsafe?.start_param) {
     CONFIG.clickId = tg.initDataUnsafe.start_param;
   }
@@ -534,9 +626,7 @@ const canvas = document.getElementById('wheelCanvas');
 const ctx = canvas.getContext('2d');
 const segs = CONFIG.segments;
 const arcSize = (2 * Math.PI) / segs.length;
-let isSpinning = false;
-let currentRotation = 0;
-let wonPrize = null;
+let isSpinning = false, currentRotation = 0, wonPrize = null;
 
 function drawWheel(rot = 0) {
   const cx = canvas.width / 2, cy = canvas.height / 2, r = cx - 4;
@@ -548,12 +638,18 @@ function drawWheel(rot = 0) {
     ctx.fillStyle = segs[i].color; ctx.fill();
     ctx.strokeStyle = 'rgba(212,168,67,0.15)'; ctx.lineWidth = 1; ctx.stroke();
     ctx.save(); ctx.rotate(sa + arcSize / 2);
-    ctx.font = '700 24px "Space Mono", monospace';
-    ctx.fillStyle = '#D4A843'; ctx.textAlign = 'center';
-    ctx.fillText(segs[i].label, r * 0.58, -4);
-    ctx.font = '600 11px "Outfit", sans-serif';
+
+    // Value
+    ctx.font = '700 22px "Space Mono", monospace';
+    ctx.fillStyle = segs[i].value === 250 ? '#F2D477' : '#D4A843';
+    ctx.textAlign = 'center';
+    ctx.fillText(segs[i].label, r * 0.56, -4);
+
+    // Unit label
+    ctx.font = '600 10px "Outfit", sans-serif';
     ctx.fillStyle = 'rgba(212,168,67,0.55)';
-    ctx.fillText('CHF', r * 0.58, 13);
+    ctx.fillText(segs[i].unit, r * 0.56, 12);
+
     ctx.restore();
   }
   ctx.beginPath(); ctx.arc(0, 0, 42, 0, 2 * Math.PI);
@@ -588,44 +684,53 @@ function spinWheel() {
     const p = Math.min((now - t0) / dur, 1);
     currentRotation = startRot + delta * (1 - Math.pow(1 - p, 4));
     drawWheel(currentRotation);
-    if (p < 1) requestAnimationFrame(anim);
-    else onWin();
+    if (p < 1) requestAnimationFrame(anim); else onWin();
   }
   requestAnimationFrame(anim);
+}
+
+function buildOfferUrl(base) {
+  let url = base;
+  const p = [];
+  if (CONFIG.clickId) p.push('clickid=' + CONFIG.clickId);
+  if (CONFIG.zoneId) p.push('zoneid=' + CONFIG.zoneId);
+  p.push('bonus=250fs');
+  if (tgUser) p.push('tg_id=' + tgUser.id);
+  if (p.length) url += (url.includes('?') ? '&' : '?') + p.join('&');
+  return url;
 }
 
 function onWin() {
   haptic('success');
 
-  // Set prize values
+  // Always show 250 FS as the prize (that's the real offer)
   document.getElementById('prizeValue').textContent = wonPrize.value;
-  document.getElementById('prizeValueCta').textContent = wonPrize.value;
 
-  // Build offer URL with tracking
-  let url = CONFIG.offerLink;
-  const p = [];
-  if (CONFIG.clickId) p.push('clickid=' + CONFIG.clickId);
-  if (CONFIG.zoneId) p.push('zoneid=' + CONFIG.zoneId);
-  p.push('bonus=' + wonPrize.value);
-  if (tgUser) p.push('tg_id=' + tgUser.id);
-  if (p.length) url += (url.includes('?') ? '&' : '?') + p.join('&');
+  // Build offer URLs
+  const noDepUrl = buildOfferUrl(CONFIG.offerLinkNoDeposit);
+  const depUrl = buildOfferUrl(CONFIG.offerLinkDeposit);
 
-  // Set offer button
-  const offerBtn = document.getElementById('offerBtn');
-  offerBtn.href = url;
-  offerBtn.onclick = function(e) {
-    e.preventDefault();
-    haptic('light');
-    if (tg?.openLink) tg.openLink(url);
-    else window.open(url, '_blank');
+  // No-deposit button
+  const noDepBtn = document.getElementById('noDepositBtn');
+  noDepBtn.href = noDepUrl;
+  noDepBtn.onclick = function(e) {
+    e.preventDefault(); haptic('light');
+    if (tg?.openLink) tg.openLink(noDepUrl); else window.open(noDepUrl, '_blank');
   };
 
-  // Set channel button
-  const channelBtn = document.getElementById('channelBtn');
-  channelBtn.href = CONFIG.channelLink;
-  channelBtn.onclick = function(e) {
-    e.preventDefault();
-    haptic('light');
+  // Deposit button
+  const depBtn = document.getElementById('depositBtn');
+  depBtn.href = depUrl;
+  depBtn.onclick = function(e) {
+    e.preventDefault(); haptic('light');
+    if (tg?.openLink) tg.openLink(depUrl); else window.open(depUrl, '_blank');
+  };
+
+  // Channel button
+  const chBtn = document.getElementById('channelBtn');
+  chBtn.href = CONFIG.channelLink;
+  chBtn.onclick = function(e) {
+    e.preventDefault(); haptic('light');
     if (tg?.openTelegramLink) tg.openTelegramLink(CONFIG.channelLink);
     else window.open(CONFIG.channelLink, '_blank');
   };
@@ -637,8 +742,25 @@ function onWin() {
   winPhase.classList.add('active');
   winPhase.style.animation = 'fadeScale 0.5s ease-out';
 
-  // Confetti
   launchConfetti();
+}
+
+// ═══════════════════════════════════════
+//  EXTRAS DROPDOWN
+// ═══════════════════════════════════════
+function toggleExtras() {
+  const toggle = document.getElementById('extrasToggle');
+  const content = document.getElementById('extrasContent');
+  toggle.classList.toggle('open');
+  content.classList.toggle('open');
+  haptic('light');
+
+  // Scroll into view if opening
+  if (content.classList.contains('open')) {
+    setTimeout(() => {
+      content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
 }
 
 // ═══════════════════════════════════════
@@ -648,10 +770,10 @@ function launchConfetti() {
   const c = document.getElementById('confetti-canvas');
   const cx2 = c.getContext('2d');
   c.width = window.innerWidth; c.height = window.innerHeight;
-  const cols = ['#D4A843','#F2D477','#2ECC71','#E74C3C','#3498DB','#fff'];
+  const cols = ['#D4A843','#F2D477','#2ECC71','#9B59B6','#3498DB','#fff'];
   const ps = [];
   for (let i = 0; i < 100; i++) ps.push({
-    x: c.width/2+(Math.random()-.5)*200, y: c.height*0.4,
+    x: c.width/2+(Math.random()-.5)*200, y: c.height*0.35,
     w: Math.random()*8+3, h: Math.random()*4+2,
     color: cols[Math.floor(Math.random()*cols.length)],
     vx: (Math.random()-.5)*16, vy: -(Math.random()*14+4),
